@@ -984,7 +984,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionarUsuariosActionPerformed
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-//coso coso blablabla
+//coso coso blablablaasdasdasd
     }//GEN-LAST:event_btnConfigActionPerformed
 
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
