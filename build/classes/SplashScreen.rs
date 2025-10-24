@@ -1,0 +1,3 @@
+componentes.SplashScreen
+componentes.SplashScreen$MiCargadorDatos
+componentes.SplashScreen$ReproductorAudio

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>root</artifactId>
+    <version>9.3.0</version>
+  </parent>
+
+  <artifactId>pdfua</artifactId>
+
+  <name>iText - pdfua</name>
+  <url>https://itextpdf.com/</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>kernel</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>commons</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>layout</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>forms</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>pdftest</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>bouncy-castle-adapter</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>font-asian</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>with-sharpen</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>sharpen</groupId>
+            <artifactId>sharpen-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>sharpen</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>sharpen</groupId>
+                <artifactId>standard-framework-mapping</artifactId>
+                <version>1.0-SNAPSHOT</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <projectName>pdfua</projectName>
+              <cSharpTargetFolder>./../../../sharp/itextcore</cSharpTargetFolder>
+              <cSharpSourceCodeDestination>itext/itext.pdfua</cSharpSourceCodeDestination>
+              <cSharpTestCodeDestination>itext.tests/itext.pdfua.tests</cSharpTestCodeDestination>
+              <buildDotnet>${sharpen.builddotnet}</buildDotnet>
+              <showDiff>${sharpen.showdiff}</showDiff>
+              <sourceCodeFiles>
+                <file>**/src/main/java/**/*.java</file>
+              </sourceCodeFiles>
+              <testCodeFiles>
+                <file>**/src/test/java/**/*.java</file>
+              </testCodeFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

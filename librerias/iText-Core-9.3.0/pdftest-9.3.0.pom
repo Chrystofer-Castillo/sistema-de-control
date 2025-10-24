@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>root</artifactId>
+    <version>9.3.0</version>
+  </parent>
+
+  <artifactId>pdftest</artifactId>
+
+  <name>iText - pdftest</name>
+  <url>https://itextpdf.com/</url>
+
+  <properties>
+    <sonar.skip>true</sonar.skip>
+    <verapdf.version>1.26.2</verapdf.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- remove when VeraPdf uses the same or a newer version -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.verapdf</groupId>
+      <artifactId>validation-model</artifactId>
+      <version>${verapdf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <finalName>VeraPdfValidatorApp</finalName>
+          <archive>
+            <manifest>
+              <mainClass>com.itextpdf.test.runtime.VeraPdfValidatorApp</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <appendAssemblyId>false</appendAssemblyId>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly-verapdf-app</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>with-sharpen</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>sharpen</groupId>
+            <artifactId>sharpen-maven-plugin</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>sharpen</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>sharpen</groupId>
+                <artifactId>standard-framework-mapping</artifactId>
+                <version>1.0-SNAPSHOT</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <projectName>pdftest</projectName>
+              <cSharpTargetFolder>./../../../sharp/itextcore</cSharpTargetFolder>
+              <cSharpSourceCodeDestination>itext/itext.pdftest</cSharpSourceCodeDestination>
+              <cSharpTestCodeDestination>itext.tests/itext.pdftest.tests</cSharpTestCodeDestination>
+              <buildDotnet>${sharpen.builddotnet}</buildDotnet>
+              <showDiff>${sharpen.showdiff}</showDiff>
+              <sourceCodeFiles>
+                <file>**/src/main/java/**/*.java</file>
+              </sourceCodeFiles>
+              <testCodeFiles>
+                <file>**/src/test/java/**/*.java</file>
+              </testCodeFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
