@@ -231,7 +231,7 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//BLABLABLABLEBLEBLEBLUBLUBU
+
     private void minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizarMouseClicked
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_minimizarMouseClicked
