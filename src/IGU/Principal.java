@@ -190,7 +190,6 @@ public class Principal extends javax.swing.JFrame {
         lblNombre.setBackground(new java.awt.Color(204, 204, 204));
         lblNombre.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombre.setText("prueba");
         lblNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -201,7 +200,6 @@ public class Principal extends javax.swing.JFrame {
         lblRol.setBackground(new java.awt.Color(204, 204, 204));
         lblRol.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
         lblRol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRol.setText("prueba");
         lblRol.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

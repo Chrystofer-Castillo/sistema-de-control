@@ -107,7 +107,6 @@
               <Font name="Araboto-Normal" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="prueba"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
           <Events>
@@ -123,7 +122,6 @@
               <Font name="Araboto-Normal" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="prueba"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
           <Events>
