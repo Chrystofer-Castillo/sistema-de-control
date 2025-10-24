@@ -190,8 +190,8 @@ public class Principal extends javax.swing.JFrame {
         lblNombre.setBackground(new java.awt.Color(204, 204, 204));
         lblNombre.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombre.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        lblNombre.setBorder(new javax.swing.border.MatteBorder(null));
+        lblNombre.setText("prueba");
+        lblNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNombreMouseClicked(evt);
@@ -201,8 +201,8 @@ public class Principal extends javax.swing.JFrame {
         lblRol.setBackground(new java.awt.Color(204, 204, 204));
         lblRol.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
         lblRol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRol.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        lblRol.setBorder(new javax.swing.border.MatteBorder(null));
+        lblRol.setText("prueba");
+        lblRol.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblRolMouseClicked(evt);
@@ -528,7 +528,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlCargarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addComponent(fdpresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                    .addComponent(fdpresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlCargarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnlimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
