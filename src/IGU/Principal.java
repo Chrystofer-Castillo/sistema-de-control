@@ -1,5 +1,5 @@
 package IGU;
-//PRUEBAAAA
+
 import Controlador.Controlador;
 import Modelo.usuarios;
 import java.awt.CardLayout;
@@ -987,7 +987,7 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnConfigActionPerformed
 
-
+//ESTO ES OTRA PRUEBA BLIBLI
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
         titulo1.setText("Subir Datos");
         //CATEGORIA BOTONES 
