@@ -219,7 +219,7 @@ public class Principal extends javax.swing.JFrame {
         titulo1.setBackground(new java.awt.Color(0, 0, 0));
         titulo1.setFont(new java.awt.Font("Segoe UI Black", 1, 30)); // NOI18N
         titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo1.setText("Inicio");
+        titulo1.setText("INICIO");
         titulo1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         ocultarMenu.setBorder(null);

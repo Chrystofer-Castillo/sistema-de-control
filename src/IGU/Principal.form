@@ -171,7 +171,7 @@
               <Font name="Segoe UI Black" size="30" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Inicio"/>
+            <Property name="text" type="java.lang.String" value="INICIO"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
           <AuxValues>
