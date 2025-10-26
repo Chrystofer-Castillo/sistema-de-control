@@ -529,15 +529,14 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlCargarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCargarDatosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlCargarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(fdpresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCargarDatosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))))
             .addGroup(pnlCargarDatosLayout.createSequentialGroup()
@@ -964,7 +963,7 @@ public class Principal extends javax.swing.JFrame {
         btnInicio.setBackground(new java.awt.Color(62, 115, 248));
         btnInicio.setBorder(null);
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
-        btnInicio.setText("Inicio");
+        btnInicio.setText("InIcIo");
         btnInicio.setBorderColor(new java.awt.Color(242, 242, 242));
         btnInicio.setColor(new java.awt.Color(62, 115, 248));
         btnInicio.setColorClick(new java.awt.Color(62, 96, 234));
