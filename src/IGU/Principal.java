@@ -881,7 +881,7 @@ public class Principal extends javax.swing.JFrame {
         btnCargarDatos.setBackground(new java.awt.Color(62, 115, 248));
         btnCargarDatos.setBorder(null);
         btnCargarDatos.setForeground(new java.awt.Color(255, 255, 255));
-        btnCargarDatos.setText("CARGAR DATOS");
+        btnCargarDatos.setText("Cargar Datos");
         btnCargarDatos.setBorderColor(new java.awt.Color(242, 242, 242));
         btnCargarDatos.setColor(new java.awt.Color(62, 115, 248));
         btnCargarDatos.setColorClick(new java.awt.Color(62, 96, 234));
@@ -931,7 +931,7 @@ public class Principal extends javax.swing.JFrame {
         btnVisualizar.setBackground(new java.awt.Color(62, 115, 248));
         btnVisualizar.setBorder(null);
         btnVisualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnVisualizar.setText("Visualizar DATOS");
+        btnVisualizar.setText("Visualizar Datos");
         btnVisualizar.setBorderColor(new java.awt.Color(242, 242, 242));
         btnVisualizar.setColor(new java.awt.Color(62, 115, 248));
         btnVisualizar.setColorClick(new java.awt.Color(62, 96, 234));
@@ -963,7 +963,7 @@ public class Principal extends javax.swing.JFrame {
         btnInicio.setBackground(new java.awt.Color(62, 115, 248));
         btnInicio.setBorder(null);
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
-        btnInicio.setText("InIcIo");
+        btnInicio.setText("Inicio");
         btnInicio.setBorderColor(new java.awt.Color(242, 242, 242));
         btnInicio.setColor(new java.awt.Color(62, 115, 248));
         btnInicio.setColorClick(new java.awt.Color(62, 96, 234));
