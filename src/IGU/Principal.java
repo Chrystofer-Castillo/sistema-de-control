@@ -72,7 +72,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal(usuarios mod) {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
         this.setContentPane(new FondoPanel());
-       
+       //esto es otra prueba blibli
         
         initComponents();              //initcomponent
         setLocationRelativeTo(null);
