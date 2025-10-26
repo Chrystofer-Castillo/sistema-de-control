@@ -24,7 +24,7 @@ import notification.PrevisualizarInfo;
 
 /**
  *
- * @author Chrys y Manuel
+ * @author ChrysTOFER y Manuel LOPEZ
  */
 public class Principal extends javax.swing.JFrame {
 
