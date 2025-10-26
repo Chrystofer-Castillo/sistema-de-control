@@ -72,7 +72,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal(usuarios mod) {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
         this.setContentPane(new FondoPanel());
-       //esto es otra prueba blibli
+
         
         initComponents();              //initcomponent
         setLocationRelativeTo(null);
@@ -881,7 +881,7 @@ public class Principal extends javax.swing.JFrame {
         btnCargarDatos.setBackground(new java.awt.Color(62, 115, 248));
         btnCargarDatos.setBorder(null);
         btnCargarDatos.setForeground(new java.awt.Color(255, 255, 255));
-        btnCargarDatos.setText("Cargar datos");
+        btnCargarDatos.setText("CARGAR DATOS");
         btnCargarDatos.setBorderColor(new java.awt.Color(242, 242, 242));
         btnCargarDatos.setColor(new java.awt.Color(62, 115, 248));
         btnCargarDatos.setColorClick(new java.awt.Color(62, 96, 234));
