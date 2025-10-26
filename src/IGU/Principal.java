@@ -1,5 +1,5 @@
 package IGU;
-//Hello wooper
+
 import Controlador.Controlador;
 import Modelo.usuarios;
 import java.awt.CardLayout;
@@ -24,7 +24,7 @@ import notification.PrevisualizarInfo;
 
 /**
  *
- * @author ChrysTOFER y Manuel LOPEZ
+ * @author ChrysTOFER(periquero) y Manuel LOPEZ
  */
 public class Principal extends javax.swing.JFrame {
 
