@@ -947,7 +947,7 @@ public class Principal extends javax.swing.JFrame {
         btnGestionarUsuarios.setBackground(new java.awt.Color(62, 115, 248));
         btnGestionarUsuarios.setBorder(null);
         btnGestionarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionarUsuarios.setText("Gestion de USUARIOS");
+        btnGestionarUsuarios.setText("Gestion de Usuario");
         btnGestionarUsuarios.setBorderColor(new java.awt.Color(242, 242, 242));
         btnGestionarUsuarios.setColor(new java.awt.Color(62, 115, 248));
         btnGestionarUsuarios.setColorClick(new java.awt.Color(62, 96, 234));
