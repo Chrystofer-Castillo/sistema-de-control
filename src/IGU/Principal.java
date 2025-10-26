@@ -931,7 +931,7 @@ public class Principal extends javax.swing.JFrame {
         btnVisualizar.setBackground(new java.awt.Color(62, 115, 248));
         btnVisualizar.setBorder(null);
         btnVisualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnVisualizar.setText("Visualizar Datos");
+        btnVisualizar.setText("Visualizar DATOS");
         btnVisualizar.setBorderColor(new java.awt.Color(242, 242, 242));
         btnVisualizar.setColor(new java.awt.Color(62, 115, 248));
         btnVisualizar.setColorClick(new java.awt.Color(62, 96, 234));
