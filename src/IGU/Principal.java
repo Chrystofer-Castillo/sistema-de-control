@@ -1,5 +1,5 @@
 package IGU;
-
+//Esto es una prueba
 import Controlador.Controlador;
 import Modelo.usuarios;
 import java.awt.CardLayout;
