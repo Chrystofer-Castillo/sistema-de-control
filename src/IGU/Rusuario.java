@@ -10,6 +10,7 @@ import Modelo.usuariosDAO;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import java.awt.Color;
+import javax.swing.JFrame;
 public class Rusuario extends javax.swing.JFrame {
 
     public Rusuario() {
@@ -34,13 +35,16 @@ public class Rusuario extends javax.swing.JFrame {
         passconfirm = new javax.swing.JPasswordField();
         id_tipo = new javax.swing.JComboBox<>();
         botones = new componentes.MyButton();
-        jLabel6 = new javax.swing.JLabel();
         Cilabel = new javax.swing.JLabel();
         Conlabel = new javax.swing.JLabel();
         Conlabel2 = new javax.swing.JLabel();
         Conlabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        minimizar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
@@ -51,6 +55,7 @@ public class Rusuario extends javax.swing.JFrame {
         round11.setRoundBottomRight(30);
         round11.setRoundTopLeft(30);
         round11.setRoundTopRight(30);
+        round11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nombre.setBackground(new java.awt.Color(195, 195, 195));
         nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -58,11 +63,13 @@ public class Rusuario extends javax.swing.JFrame {
                 nombreActionPerformed(evt);
             }
         });
+        round11.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 131, 173, 16));
 
         Nomlabel.setBackground(new java.awt.Color(255, 255, 255));
         Nomlabel.setFont(new java.awt.Font("Araboto-Light", 0, 12)); // NOI18N
         Nomlabel.setForeground(new java.awt.Color(75, 75, 78));
         Nomlabel.setText("Nombre y Apellido:");
+        round11.add(Nomlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 130, -1, -1));
 
         ci.setBackground(new java.awt.Color(195, 195, 195));
         ci.addActionListener(new java.awt.event.ActionListener() {
@@ -70,8 +77,10 @@ public class Rusuario extends javax.swing.JFrame {
                 ciActionPerformed(evt);
             }
         });
+        round11.add(ci, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 166, 173, 16));
 
         password.setBackground(new java.awt.Color(195, 195, 195));
+        round11.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 201, 173, 16));
 
         passconfirm.setBackground(new java.awt.Color(195, 195, 195));
         passconfirm.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +88,7 @@ public class Rusuario extends javax.swing.JFrame {
                 passconfirmActionPerformed(evt);
             }
         });
+        round11.add(passconfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 236, 173, 16));
 
         id_tipo.setBackground(new java.awt.Color(195, 195, 195));
         id_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Administrador", "Profesor", "Asistente" }));
@@ -87,6 +97,7 @@ public class Rusuario extends javax.swing.JFrame {
                 id_tipoActionPerformed(evt);
             }
         });
+        round11.add(id_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 271, 173, 16));
 
         botones.setBackground(new java.awt.Color(16, 120, 17));
         botones.setBorder(null);
@@ -102,93 +113,65 @@ public class Rusuario extends javax.swing.JFrame {
                 botonesActionPerformed(evt);
             }
         });
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Araboto-Black", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(45, 44, 44));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("REGISTRAR USUARIO");
-        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        round11.add(botones, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 200, 60));
 
         Cilabel.setBackground(new java.awt.Color(255, 255, 255));
         Cilabel.setFont(new java.awt.Font("Araboto-Light", 0, 12)); // NOI18N
         Cilabel.setForeground(new java.awt.Color(75, 75, 78));
         Cilabel.setText("Cedula de Identidad:");
+        round11.add(Cilabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 165, -1, -1));
 
         Conlabel.setBackground(new java.awt.Color(255, 255, 255));
         Conlabel.setFont(new java.awt.Font("Araboto-Light", 0, 12)); // NOI18N
         Conlabel.setForeground(new java.awt.Color(75, 75, 78));
         Conlabel.setText("Contraseña:");
+        round11.add(Conlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 200, -1, -1));
 
         Conlabel2.setBackground(new java.awt.Color(255, 255, 255));
         Conlabel2.setFont(new java.awt.Font("Araboto-Light", 0, 12)); // NOI18N
         Conlabel2.setForeground(new java.awt.Color(75, 75, 78));
         Conlabel2.setText("Confirmar Contraseña:");
+        round11.add(Conlabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, -1, -1));
 
         Conlabel3.setBackground(new java.awt.Color(255, 255, 255));
         Conlabel3.setFont(new java.awt.Font("Araboto-Light", 0, 12)); // NOI18N
         Conlabel3.setForeground(new java.awt.Color(75, 75, 78));
         Conlabel3.setText("Rol del Usuario:");
+        round11.add(Conlabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 270, -1, -1));
 
-        javax.swing.GroupLayout round11Layout = new javax.swing.GroupLayout(round11);
-        round11.setLayout(round11Layout);
-        round11Layout.setHorizontalGroup(
-            round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(round11Layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(round11Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(botones, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(round11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Nomlabel)
-                    .addComponent(Conlabel)
-                    .addComponent(Cilabel)
-                    .addComponent(Conlabel2)
-                    .addComponent(Conlabel3))
-                .addGap(18, 18, 18)
-                .addGroup(round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ci, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(passconfirm, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(id_tipo, 0, 173, Short.MAX_VALUE)
-                    .addComponent(nombre))
-                .addGap(17, 17, 17))
-        );
-        round11Layout.setVerticalGroup(
-            round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(round11Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addGroup(round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nomlabel))
-                .addGap(18, 18, 18)
-                .addGroup(round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ci, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cilabel))
-                .addGap(18, 18, 18)
-                .addGroup(round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Conlabel))
-                .addGap(18, 18, 18)
-                .addGroup(round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passconfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Conlabel2))
-                .addGap(18, 18, 18)
-                .addGroup(round11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Conlabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(botones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
-        );
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Araboto-Black", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(45, 44, 44));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("REGISTRAR USUARIO");
+        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        round11.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 36, 336, 40));
+
+        minimizar.setBackground(new java.awt.Color(0, 0, 0));
+        minimizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        minimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        minimizar.setText("—");
+        minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minimizarMouseClicked(evt);
+            }
+        });
+        round11.add(minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 24, 30));
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("X");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        round11.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,7 +181,7 @@ public class Rusuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(round11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(round11, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
         );
 
         pack();
@@ -272,6 +255,14 @@ public class Rusuario extends javax.swing.JFrame {
         }               // TODO add your handling code here:
     }//GEN-LAST:event_botonesActionPerformed
 
+    private void minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizarMouseClicked
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_minimizarMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -285,7 +276,9 @@ public class Rusuario extends javax.swing.JFrame {
     private componentes.MyButton botones;
     public javax.swing.JTextField ci;
     private javax.swing.JComboBox<String> id_tipo;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel minimizar;
     private javax.swing.JTextField nombre;
     private javax.swing.JPasswordField passconfirm;
     private javax.swing.JPasswordField password;
