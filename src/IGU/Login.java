@@ -93,13 +93,13 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Olvidaste la contraseña?");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
-        panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 130, -1));
+        panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 130, 30));
 
         txtCi.setBackground(new java.awt.Color(217, 216, 217));
         txtCi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -142,8 +142,8 @@ public class Login extends javax.swing.JFrame {
         login.setText("Iniciar Sesión");
         login.setBorderColor(new java.awt.Color(217, 216, 217));
         login.setColor(new java.awt.Color(16, 120, 17));
-        login.setColorClick(new java.awt.Color(21, 27, 41));
-        login.setColorOver(new java.awt.Color(41, 53, 82));
+        login.setColorClick(new java.awt.Color(16, 168, 2));
+        login.setColorOver(new java.awt.Color(16, 84, 17));
         login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         login.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         login.setRadius(30);
@@ -194,7 +194,7 @@ public class Login extends javax.swing.JFrame {
         minimizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         minimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         minimizar.setText("—");
-        minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 minimizarMouseClicked(evt);
@@ -206,7 +206,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("X");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);

@@ -1,2 +1,1 @@
-Clases.PanelSombreado
 Clases.PanelRound
