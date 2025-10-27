@@ -99,7 +99,7 @@ public class Login extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 130, 30));
+        panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 320, 30));
 
         txtCi.setBackground(new java.awt.Color(217, 216, 217));
         txtCi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N

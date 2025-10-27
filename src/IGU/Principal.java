@@ -190,7 +190,6 @@ public class Principal extends javax.swing.JFrame {
         lblNombre.setBackground(new java.awt.Color(204, 204, 204));
         lblNombre.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombre.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblNombre.setBorder(new javax.swing.border.MatteBorder(null));
         lblNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -201,7 +200,6 @@ public class Principal extends javax.swing.JFrame {
         lblRol.setBackground(new java.awt.Color(204, 204, 204));
         lblRol.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
         lblRol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRol.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblRol.setBorder(new javax.swing.border.MatteBorder(null));
         lblRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -725,7 +723,7 @@ public class Principal extends javax.swing.JFrame {
             pnlVisualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVisualizarDatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlMenuVisualizarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7))
@@ -773,6 +771,11 @@ public class Principal extends javax.swing.JFrame {
         btnEditar.setColorOver(new java.awt.Color(103, 181, 255));
         btnEditar.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         btnEditar.setRadius(25);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnRegistrarU.setBackground(new java.awt.Color(62, 115, 248));
         btnRegistrarU.setBorder(null);
@@ -1253,6 +1256,10 @@ public class Principal extends javax.swing.JFrame {
     private void profesorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_profesorKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_profesorKeyReleased
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarActionPerformed
 
         /**
          * @param args the command line arguments
