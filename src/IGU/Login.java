@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Araboto-Light", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(75, 75, 78));
-        jLabel7.setText("Ej: V- 10.XXX.XXX");
+        jLabel7.setText("Ej: V- 10.XXX.XXX-");
         panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
