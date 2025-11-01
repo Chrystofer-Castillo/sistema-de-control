@@ -2,25 +2,31 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexion {
 
-    private static Connection con; // Cambia a una variable estática
-    private final String b1l10ffmecjwwtmaooay = "usuarios";
 
-    public static Connection getConnection() {
-        if (con == null) {
-            String url = "jdbc:mysql://b1l10ffmecjwwtmaooay-mysql.services.clever-cloud.com:3306/b1l10ffmecjwwtmaooay";
-            String user = "ujivqmwrdfmglhba";
-            String pass = "Ao5pol8H59Ue3Kg20B5M";
+    private static final String URL = "jdbc:mysql://b1l10ffmecjwwtmaooay-mysql.services.clever-cloud.com:3306/b1l10ffmecjwwtmaooay";
+    private static final String USER = "ujivqmwrdfmglhba";
+    private static final String PASS = "Ao5pol8H59Ue3Kg20B5M";
 
-            try { 
-              Class.forName("com.mysql.cj.jdbc.Driver"); // Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection(url, user, pass);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+     public static Connection getConnection() {
+        Connection con = null; // 2. La conexión se declara como una variable local.
+
+        try {
+            // 3. Ya no se comprueba si la conexión es nula.
+            // Siempre intentamos crear una nueva.
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(URL, USER, PASS);
+            
+        } catch (ClassNotFoundException | SQLException e) {
+            // 4. Si algo sale mal, imprimimos un error claro y devolvemos null.
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            e.printStackTrace();
         }
+        
+        // 5. Devolvemos la conexión nueva (o null si falló).
         return con;
     }
 }

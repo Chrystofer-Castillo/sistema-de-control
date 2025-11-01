@@ -24,16 +24,8 @@ public class SplashScreen extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SplashScreen.class.getName());
 
-    // *****************************************************************
-    // 1. CONSTANTE para la duración del intro (7 segundos)
-    // *****************************************************************
-    // Usamos 'final' para que no pueda cambiar.
-    //private static final long TIEMPO_ESPERA_MS = 7000; 
     private static final long TIEMPO_ESPERA_MS = 4000;
 
-    /**
-     * Creates new form SplashScreen
-     */
     public SplashScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
@@ -123,9 +115,6 @@ public class SplashScreen extends javax.swing.JDialog {
             DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             mod.setLast_session(fechaHora.format(date));
-
-// ************ CÓDIGO PESADO DE CARGA DE BASE DE DATOS AQUÍ ************
-            // (Reemplaza la simulación con tu lógica de conexión y consultas)
             try {
                 long tiempoInicio = System.currentTimeMillis();
 
@@ -154,10 +143,11 @@ public class SplashScreen extends javax.swing.JDialog {
             }
             System.out.println("Ventana principal abierta.");
             Controlador c = new Controlador((Principal) ventanaPrincipal);
-            c.refrescar();
+            c.refrescarDatos();
             ventanaPrincipal.setVisible(true);
             ventanaPrincipal.setLocationRelativeTo(null);
             ventanaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            
             //ventanaPrincipal.setBackground(new Color(233, 236, 240));
 
         }

@@ -1,10 +1,11 @@
-
 package Modelo;
 
+import java.util.Objects;
 
 /**
- *
- * @author <Dev's: Chrys y Manuel> <CVAM-TEAM>
+ * Representa la entidad 'Usuario' en el sistema.
+ * Esta clase es un POJO (Plain Old Java Object) que transporta los datos del usuario
+ * entre la base de datos, la lógica del negocio y la interfaz gráfica.
  */
 public class usuarios {
 
@@ -15,6 +16,15 @@ public class usuarios {
     private String last_session;
     private int id_tipo;
     private String nombre_tipo;
+
+    /**
+     * Constructor vacío. Útil para crear un objeto 'usuarios' que se llenará
+     * con datos más adelante (por ejemplo, desde un formulario).
+     */
+    public usuarios() {
+    }
+
+    // --- GETTERS Y SETTERS (Sin cambios, están perfectos) ---
 
     public int getId() {
         return id;
@@ -72,4 +82,45 @@ public class usuarios {
         this.nombre_tipo = nombre_tipo;
     }
 
+    // --- MÉTODOS DE UTILIDAD (Añadidos para seguir buenas prácticas) ---
+
+    /**
+     * Genera una representación en texto del objeto, ideal para depuración.
+     * IMPORTANTE: La contraseña se oculta para no exponerla en logs o consolas.
+     */
+    @Override
+    public String toString() {
+        return "usuarios{" +
+                "id=" + id +
+                ", ci='" + ci + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", password='[OCULTO]'" + // Por seguridad, nunca imprimas la contraseña.
+                ", last_session='" + last_session + '\'' +
+                ", id_tipo=" + id_tipo +
+                ", nombre_tipo='" + nombre_tipo + '\'' +
+                '}';
+    }
+
+    /**
+     * Compara este objeto con otro para ver si son "iguales".
+     * Se considera que dos objetos 'usuarios' son iguales si tienen la misma cédula (ci).
+     * La cédula es un identificador único de negocio.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        usuarios usuario = (usuarios) o;
+        // Comparamos por 'ci' (cédula), asumiendo que es un identificador único y no nulo.
+        return Objects.equals(ci, usuario.ci);
+    }
+
+    /**
+     * Genera un código hash basado en la cédula (ci).
+     * Es obligatorio implementarlo si se sobreescribe el método equals().
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(ci);
+    }
 }
