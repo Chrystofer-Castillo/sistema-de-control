@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import Controlador.Controlador;
+import Modelo.ThemeManager;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.ImageIcon;
@@ -40,7 +41,6 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
         FondoPanel fondo = new FondoPanel();
-
         // 2. Establece ESE panel como el contenedor principal de la ventana
         this.setContentPane(new FondoPanel());
         initComponents();
@@ -82,11 +82,10 @@ public class Principal extends javax.swing.JFrame {
         fdpresentacion.toString();
         guardar.setEnabled(false);
         cardLayout = (CardLayout) (ventana.getLayout());
-
         lblNombre.setText(mod.getNombre());
         lblRol.setText(mod.getNombre_tipo());
-
         lblNombre.setText(mod.getNombre());
+        
         if (mod.getId_tipo() == 1) { // Administrador
 
         } else if (mod.getId_tipo() == 2) { //  Profesor
@@ -169,7 +168,10 @@ public class Principal extends javax.swing.JFrame {
         btnEditar = new componentes.MyButton();
         btnRegistrarU = new componentes.MyButton();
         btnEliminarUsuario = new componentes.MyButton();
-        config = new javax.swing.JPanel();
+        pnlConfiguracion = new componentes.round1();
+        jLabel1 = new javax.swing.JLabel();
+        btnModoClaro = new javax.swing.JButton();
+        btnModoOscuro = new javax.swing.JButton();
         menu = new componentes.round1();
         btnCargarDatos = new componentes.MyButton();
         btnCerrarSesion = new componentes.MyButton();
@@ -486,6 +488,7 @@ public class Principal extends javax.swing.JFrame {
         guardar.setColor(new java.awt.Color(62, 115, 248));
         guardar.setColorClick(new java.awt.Color(62, 96, 234));
         guardar.setColorOver(new java.awt.Color(103, 181, 255));
+        guardar.setEnabled(false);
         guardar.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         guardar.setRadius(20);
         guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -858,18 +861,52 @@ public class Principal extends javax.swing.JFrame {
 
         ventana.add(pnlGestionUsuarios, "pnlGestionUsuarios");
 
-        javax.swing.GroupLayout configLayout = new javax.swing.GroupLayout(config);
-        config.setLayout(configLayout);
-        configLayout.setHorizontalGroup(
-            configLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+        pnlConfiguracion.setRoundBottomLeft(26);
+        pnlConfiguracion.setRoundBottomRight(26);
+        pnlConfiguracion.setRoundTopLeft(26);
+        pnlConfiguracion.setRoundTopRight(26);
+
+        jLabel1.setText("Look And Feels");
+
+        btnModoClaro.setText("Tema Claro");
+        btnModoClaro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModoClaroActionPerformed(evt);
+            }
+        });
+
+        btnModoOscuro.setText("Tema Oscuro");
+        btnModoOscuro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModoOscuroActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlConfiguracionLayout = new javax.swing.GroupLayout(pnlConfiguracion);
+        pnlConfiguracion.setLayout(pnlConfiguracionLayout);
+        pnlConfiguracionLayout.setHorizontalGroup(
+            pnlConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConfiguracionLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(pnlConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModoClaro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModoOscuro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(505, Short.MAX_VALUE))
         );
-        configLayout.setVerticalGroup(
-            configLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+        pnlConfiguracionLayout.setVerticalGroup(
+            pnlConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConfiguracionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnModoClaro)
+                .addGap(18, 18, 18)
+                .addComponent(btnModoOscuro)
+                .addContainerGap(438, Short.MAX_VALUE))
         );
 
-        ventana.add(config, "config");
+        ventana.add(pnlConfiguracion, "pnlConfiguracion");
 
         menu.setRoundBottomLeft(30);
         menu.setRoundBottomRight(30);
@@ -1038,15 +1075,17 @@ public class Principal extends javax.swing.JFrame {
         cardLayout.show(ventana, "pnlGestionUsuarios");
         Principal princ = new Principal();
         Controlador c = new Controlador(princ);
-        c.refrescar();
+        c.refrescarDatos();
     }//GEN-LAST:event_btnGestionarUsuariosActionPerformed
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-
+        titulo1.setText("Configuracion");
+        cardLayout.show(ventana, "pnlConfiguracion");
     }//GEN-LAST:event_btnConfigActionPerformed
 
 
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
+        guardar.setEnabled(false);
         titulo1.setText("Subir Datos");
         sede.removeAllItems();
         cardLayout.show(ventana, "pnlCargarDatos");
@@ -1064,7 +1103,7 @@ public class Principal extends javax.swing.JFrame {
         Tabla.getColumnModel().getColumn(9).setMinWidth(0);
         Tabla.getColumnModel().getColumn(9).setMaxWidth(0);
         Tabla.getColumnModel().getColumn(9).setPreferredWidth(0);
-        //c.refrescar();
+        c.refrescarDatos();
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
@@ -1205,7 +1244,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_sedeActionPerformed
 
     private void pnfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnfKeyReleased
-        validar();        // TODO add your handling code here:
+        validar();        // TODO adadd your handling code here:
     }//GEN-LAST:event_pnfKeyReleased
 
     private void pnfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnfActionPerformed
@@ -1261,6 +1300,18 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnModoClaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoClaroActionPerformed
+java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new Principal().setVisible(true);
+        }
+    });
+    }//GEN-LAST:event_btnModoClaroActionPerformed
+
+    private void btnModoOscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoOscuroActionPerformed
+ThemeManager.aplicarTemaOscuro(this);
+    }//GEN-LAST:event_btnModoOscuroActionPerformed
+
         /**
          * @param args the command line arguments
          */
@@ -1269,24 +1320,26 @@ public class Principal extends javax.swing.JFrame {
     public componentes.MyButton BtnEliminar;
     public javax.swing.JTable Tabla;
     public javax.swing.JTable TablaUser;
-    private componentes.MyButton btnCargarDatos;
-    private componentes.MyButton btnCerrarSesion;
-    private componentes.MyButton btnConfig;
+    public componentes.MyButton btnCargarDatos;
+    public componentes.MyButton btnCerrarSesion;
+    public componentes.MyButton btnConfig;
     public componentes.MyButton btnEditar;
     public componentes.MyButton btnEditarTabla;
     public componentes.MyButton btnEliminarUsuario;
-    private componentes.MyButton btnGestionarUsuarios;
-    private componentes.MyButton btnInicio;
+    public componentes.MyButton btnGestionarUsuarios;
+    public componentes.MyButton btnInicio;
+    private javax.swing.JButton btnModoClaro;
+    private javax.swing.JButton btnModoOscuro;
     public componentes.MyButton btnRegistrarU;
-    private componentes.MyButton btnVisualizar;
+    public componentes.MyButton btnVisualizar;
     public componentes.MyButton btnbuscar;
     public componentes.MyButton btnlimpiar;
-    private javax.swing.JPanel config;
     public com.toedter.calendar.JCalendar fdpresentacion;
     public javax.swing.JComboBox<String> filtrar;
     public componentes.MyButton guardar;
     private componentes.round1 hotbar;
     private javax.swing.JPanel inicio;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1299,11 +1352,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRol;
     public javax.swing.JLabel logo;
-    private componentes.round1 menu;
+    public componentes.round1 menu;
     private componentes.MyButton ocultarMenu;
     private javax.swing.JLabel pn;
     public javax.swing.JComboBox<String> pnf;
     public javax.swing.JPanel pnlCargarDatos;
+    private componentes.round1 pnlConfiguracion;
     private javax.swing.JPanel pnlGestionUsuarios;
     private javax.swing.JPanel pnlMenuVisualizarDatos;
     private javax.swing.JPanel pnlVisualizarDatos;
