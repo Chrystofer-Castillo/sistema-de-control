@@ -1,33 +1,26 @@
 package IGU;
 //Esto es una prueba
-import Controlador.Controlador;
+
 import Modelo.usuarios;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 import Controlador.Controlador;
 import Modelo.ThemeManager;
-import java.net.URI;
-import java.net.URISyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import notification.Csesion;
-import notification.NotiEliminar;
-import notification.PrevisualizarInfo;
 
 /**
  *
  * @author Chrys y Manuel
  */
 public class Principal extends javax.swing.JFrame {
+
     public Controlador c;
     private JButton[] botones;
 
@@ -72,7 +65,6 @@ public class Principal extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
         this.setContentPane(new FondoPanel());
 
-        
         initComponents();              //initcomponent
         setLocationRelativeTo(null);
 //        this.c = new Controlador(this);
@@ -85,7 +77,7 @@ public class Principal extends javax.swing.JFrame {
         lblNombre.setText(mod.getNombre());
         lblRol.setText(mod.getNombre_tipo());
         lblNombre.setText(mod.getNombre());
-        
+
         if (mod.getId_tipo() == 1) { // Administrador
 
         } else if (mod.getId_tipo() == 2) { //  Profesor
@@ -1138,7 +1130,7 @@ public class Principal extends javax.swing.JFrame {
         /*        Principal princ = new Principal();
 
         Controlador c = new Controlador(princ);*/
-     /*   if (evt.getClickCount() == 2) { // Verificar si es un doble clic
+ /*   if (evt.getClickCount() == 2) { // Verificar si es un doble clic
             int fila = Tabla.getSelectedRow(); // Obtener la fila seleccionada
 
             if (fila != -1) { // Verificar que se ha seleccionado una fila
@@ -1154,7 +1146,7 @@ public class Principal extends javax.swing.JFrame {
                 // FIN DE LA MODIFICACIÓN
             }
         }
-*/
+         */
 //        if (evt.getClickCount() == 2) { // Verificar si es un doble clic
 //            int fila = Tabla.getSelectedRow(); // Obtener la fila seleccionada
 //            if (fila != -1) { // Verificar que se ha seleccionado una fila
@@ -1182,8 +1174,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         Csesion cs = new Csesion();
         cs.setVisible(true);
-        cs.setLocationRelativeTo(null);
-        cs.setBackground(new Color(0, 0, 0, 0));
+//        cs.setLocationRelativeTo(null);      cs.setBackground(new Color(0, 0, 0, 0));
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnEditarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTablaActionPerformed
@@ -1301,20 +1292,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnModoClaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoClaroActionPerformed
-java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Principal().setVisible(true);
-        }
-    });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Principal().setVisible(true);
+            }
+        });
     }//GEN-LAST:event_btnModoClaroActionPerformed
 
     private void btnModoOscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoOscuroActionPerformed
-ThemeManager.aplicarTemaOscuro(this);
+        ThemeManager.aplicarTemaOscuro(this);
     }//GEN-LAST:event_btnModoOscuroActionPerformed
 
-        /**
-         * @param args the command line arguments
-         */
+    /**
+     * @param args the command line arguments
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public componentes.MyButton BtnEliminar;

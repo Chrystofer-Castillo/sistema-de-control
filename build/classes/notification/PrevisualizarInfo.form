@@ -74,14 +74,14 @@
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Presentar&#xe1;n el dia:"/>
+                <Property name="text" type="java.lang.String" value="Presentar&#xe1;n el dia: "/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="449" y="0" width="220" height="-1"/>
+                  <AbsoluteConstraints x="469" y="0" width="200" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

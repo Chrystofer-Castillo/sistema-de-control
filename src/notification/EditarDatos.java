@@ -2,12 +2,9 @@ package notification;
 
 import Controlador.Controlador;
 import Modelo.Datos;
-import Modelo.DatosDAO; // Importar el DAO para la actualización
-import static com.mysql.cj.conf.PropertyKey.logger;
 import javax.swing.JOptionPane;
 import java.awt.Color;
-import java.sql.SQLException;
-import java.util.logging.Level;
+
 
 /**
  *
@@ -36,26 +33,37 @@ public class EditarDatos extends javax.swing.JDialog {
         // 💡 PASO 3: Ahora es seguro establecer el fondo transparente (si es necesario)
         // Ya que el diálogo ya no está 'decorated'
         this.setBackground(new Color(0, 0, 0, 0));
-
         this.datosOriginales = datos;
         this.controlador = controlador;
 
+        // ✅ ¡ASEGÚRATE DE QUE ESTA LÍNEA ESTÉ AQUÍ!
+        // Esta es la línea que llena los campos de texto.
         cargarDatos(datos);
+        this.datosOriginales = datos;
+        this.controlador = controlador;
+
+    }
+    private Datos datosActualizados = null;
+
+    public Datos getDatosActualizados() {
+        return datosActualizados;
     }
 
     private void cargarDatos(Datos d) {
-        // Usar los setters de tus textFields para rellenar
-        textFieldIdentificador.setText(String.valueOf(d.getId()));
-        textFieldIdentificador.setEditable(false); // ID no editable
 
+        // Usamos los getters del objeto 'Datos' para poblar los campos
+        textFieldIdentificador.setText(String.valueOf(d.getId()));
+        textFieldPNF.setText(d.getPnf());
         textFieldSede.setText(d.getSede());
-        textFieldTitulo.setText(d.getTproyecto());
-        textFieldIntegrantes.setText(d.getTxtnom());
-        textFieldProfesor.setText(d.getProfesor());
         textFieldTrayecto.setText(d.getTrayecto());
+        textFieldSeccion.setText(d.getSeccion());
+        textFieldProfesor.setText(d.getProfesor());
+        textFieldTitulo.setText(d.getTproyecto());      // Asumo que Titulo es Tproyecto
+        textFieldIntegrantes.setText(d.getTxtnom()); // Asumo que Integrantes es Txtnom
         textFieldURL.setText(d.getUrl());
 
-        // NOTA: Si tienes ComboBox o DateChooser, usa setSelectedItem() o setDate() aquí.
+        // ¡Importante! Hacemos que el ID no se pueda editar.
+        textFieldIdentificador.setEditable(false);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -231,75 +239,50 @@ public class EditarDatos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-//vvvvvvv        actualizarDatos();
+
+// 1. Validamos que los campos importantes no estén vacíos (opcional pero recomendado)
+        if (textFieldTitulo.getText().trim().isEmpty() || textFieldPNF.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El Título y el PNF no pueden estar vacíos.", "Error", JOptionPane.WARNING_MESSAGE);
+            return; // Detiene la acción si la validación falla
+        }
+
+        // 2. Si todo está bien, leemos TODOS los campos y creamos un objeto 'Datos'
+        try {
+            Datos d = new Datos();
+
+            // 3. Obtenemos el ID del campo (que no se podía editar)
+            d.setId(Integer.parseInt(textFieldIdentificador.getText()));
+
+            // 4. Obtenemos los valores nuevos de los campos que sí se podían editar
+            d.setPnf(textFieldPNF.getText());
+            d.setSede(textFieldSede.getText());
+            d.setTrayecto(textFieldTrayecto.getText());
+            d.setSeccion(textFieldSeccion.getText());
+            d.setProfesor(textFieldProfesor.getText());
+            d.setTproyecto(textFieldTitulo.getText());      // Asumo que Titulo es Tproyecto
+            d.setTxtnom(textFieldIntegrantes.getText()); // Asumo que Integrantes es Txtnom
+            d.setUrl(textFieldURL.getText());
+
+            // 5. ¡MUY IMPORTANTE! Mantenemos la fecha original, ya que no la editamos aquí.
+            //    La tomamos del objeto que guardamos en el constructor.
+            d.setFdpresentacion(this.datosOriginales.getFdpresentacion());
+
+            // 6. Guardamos el "paquete" (el objeto 'Datos' actualizado)
+            //    para que el Controlador lo recoja.
+            this.datosActualizados = d;
+
+            // 7. Cerramos esta ventana
+            this.dispose();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: El ID no es un número válido.");
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void textFieldSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldSeccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldSeccionActionPerformed
-    // Dentro de notification.EditarDatos.java
 
-  /*  private void actualizarDatos() {
-
-    // 1. Recoger y validar los datos modificados
-    String nuevoPnf = textFieldPNF.getText().trim();
-    String nuevaSede = textFieldSede.getText().trim();
-    String nuevoTrayecto = textFieldTrayecto.getText().trim();
-    String nuevaSeccion = textFieldSeccion.getText().trim();
-    String nuevoProfesor = textFieldProfesor.getText().trim();
-    String nuevoTitulo = textFieldTitulo.getText().trim();
-    String nuevosIntegrantes = textFieldIntegrantes.getText().trim();
-    String nuevaUrl = textFieldURL.getText().trim();
-
-    // ❌ ELIMINAR O IGNORAR: Lógica de recolección del componente de fecha (dateChooserFecha)
-    // ❌ ELIMINAR O IGNORAR: Validación de fechaUtil == null
-    
-    // Validación de campos obligatorios
-    if (nuevoPnf.isEmpty() || nuevaSede.isEmpty() || nuevoTrayecto.isEmpty() || nuevaSeccion.isEmpty()) {
-        // La advertencia sobre la fecha es ahora incorrecta, la corregimos.
-        JOptionPane.showMessageDialog(this, "Debe completar todos los campos obligatorios.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    try {
-        // 2. Crear el objeto Datos con los datos actualizados
-        Datos datosModificados = new Datos();
-        
-        // CRÍTICO A: Mantener el ID original
-        datosModificados.setId(this.datosOriginales.getId());
-
-        // 💡 CRÍTICO B: SETEAR LA FECHA ORIGINAL (ESTÁTICA)
-        // Tomamos el valor original de la fecha del objeto de datos que se abrió.
-        datosModificados.setFdpresentacion(this.datosOriginales.getFdpresentacion()); 
-
-        // Seteamos los valores modificables
-        datosModificados.setPnf(nuevoPnf);
-        datosModificados.setSede(nuevaSede);
-        datosModificados.setTrayecto(nuevoTrayecto);
-        datosModificados.setSeccion(nuevaSeccion);
-        datosModificados.setProfesor(nuevoProfesor);
-        datosModificados.setTproyecto(nuevoTitulo);
-        datosModificados.setTxtnom(nuevosIntegrantes);
-        datosModificados.setUrl(nuevaUrl);
-
-        // 3. Llamar a la lógica de actualización en el DAO
-        int resultado = controlador.dao.actualizar(datosModificados);
-
-        if (resultado == 1) {
-            JOptionPane.showMessageDialog(this, "✅ Proyecto actualizado correctamente.");
-            controlador.refrescar();
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "⚠️ Error al actualizar en la base de datos (0 filas afectadas).", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-        ex.printStackTrace();
-    }
-}*/    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

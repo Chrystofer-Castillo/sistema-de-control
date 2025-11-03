@@ -4,6 +4,8 @@
  */
 package notification;
 
+import java.awt.Color;
+
 /**
  *
  * @author Chrys
@@ -17,6 +19,8 @@ public class Csesion extends javax.swing.JFrame {
      */
     public Csesion() {
         initComponents();
+        setLocationRelativeTo(null);
+          this.setBackground(new Color(0, 0, 0, 0));
     }
 
     /**

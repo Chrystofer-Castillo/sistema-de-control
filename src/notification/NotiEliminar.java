@@ -4,12 +4,14 @@
  */
 package notification;
 
+import java.awt.Color;
+
 /**
  *
  * @author Chrys
  */
 public class NotiEliminar extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotiEliminar.class.getName());
 
     /**
@@ -18,8 +20,11 @@ public class NotiEliminar extends javax.swing.JDialog {
     public NotiEliminar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+        setLocationRelativeTo(null);
     }
-private int opcionElegida = 0;
+    private boolean continuePressed = false;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,54 +143,22 @@ private int opcionElegida = 0;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        this.opcionElegida = 1; 
-    this.dispose();
+        this.continuePressed = true;
+        this.dispose();
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-     this.opcionElegida = 0; 
-    this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                NotiEliminar dialog = new NotiEliminar(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+    public boolean isContinuePressed() {
+        return continuePressed;
     }
-public int getOpcionElegida() {
-    return opcionElegida;
-}
+
+    public int getOpcionElegida() {
+        this.continuePressed = true; // 1. Marcamos que sí se presionó
+        this.dispose();
+        return 0;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private componentes.MyButton btnCancelar;
     private componentes.MyButton btnContinuar;
