@@ -4,6 +4,7 @@ import Modelo.Hash;
 import Modelo.usuarios;
 import Modelo.usuariosDAO;
 import componentes.SplashScreen;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
@@ -12,26 +13,24 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-/*
-@author Chrys
- */
 public class Login extends javax.swing.JFrame {
 
     private int xMouse;
     private int yMouse;
-   // FondoPanel fondo = new FondoPanel();
+    // FondoPanel fondo = new FondoPanel();
 
     public Login() {
 //        this.setContentPane(fondo);
         this.setTitle("Iniciar Sesión");
         initComponents();
+        setBackground(new Color (0,0,0,0));
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                xMouse = e.getX(); // Obtener la posición X del mouse
-                yMouse = e.getY(); // Obtener la posición Y del mouse
+                xMouse = e.getX();
+                yMouse = e.getY();
             }
         });
 
@@ -237,11 +236,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_minimizarMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-/*
+
         usuariosDAO modSql = new usuariosDAO();
         usuarios mod = new usuarios();
 
@@ -249,6 +248,7 @@ System.exit(0);
         DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         String password = new String(txtPassword.getPassword());
+
         if (!txtCi.getText().equals("") && !password.equals("")) {
             String nuevoPass = Hash.sha1(password);
 
@@ -256,77 +256,24 @@ System.exit(0);
             mod.setPassword(nuevoPass);
             mod.setLast_session(fechaHora.format(date));
             if (modSql.login(mod)) {
-                Principal princ = new Principal(mod);
-                princ.setVisible(true);
-                princ.setLocationRelativeTo(null);
-                princ.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                this.dispose();
-                Controlador c = new Controlador(princ);
-                c.refrescar();
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Datos Incorrectos");
-
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Debe ingresar sus datos.");
-        }*/
-usuariosDAO modSql = new usuariosDAO();
-        usuarios mod = new usuarios();
-
-        Date date = new Date();
-        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        String password = new String(txtPassword.getPassword());
-        
-        if (!txtCi.getText().equals("") && !password.equals("")) {
-            String nuevoPass = Hash.sha1(password);
-
-            mod.setCi(txtCi.getText());
-            mod.setPassword(nuevoPass);
-            mod.setLast_session(fechaHora.format(date));
-            
-            // **********************************************************
-            // PUNTO DE INTEGRACIÓN: Login exitoso
-            // **********************************************************
-            if (modSql.login(mod)) {
-                
-                // 1. Ocultar la ventana de Login
                 this.dispose();
 
-                // 2. Preparar la ventana Principal, pero NO hacerla visible AÚN.
-                // Le pasamos el objeto 'mod' con los datos del usuario.
-                Principal ventanaPrincipal = new Principal(mod); 
-                
-                // 3. Crear y mostrar la pantalla de carga (SplashScreen)
-                // Usamos 'null' como parent ya que la ventana de Login ya se cerró.
-                SplashScreen pantallaCarga = new SplashScreen(null, false); 
+                Principal ventanaPrincipal = new Principal(mod);
+
+                SplashScreen pantallaCarga = new SplashScreen(null, false);
                 pantallaCarga.setVisible(true);
                 pantallaCarga.setLocationRelativeTo(this);
-                // 4. Iniciar el cargador de datos en segundo plano (SwingWorker)
-                // Le pasamos la referencia del Splash y de la ventana Principal.
-                SplashScreen.MiCargadorDatos cargador = 
-                    new SplashScreen.MiCargadorDatos(pantallaCarga, ventanaPrincipal);
+                SplashScreen.MiCargadorDatos cargador
+                        = new SplashScreen.MiCargadorDatos(pantallaCarga, ventanaPrincipal);
                 cargador.execute();
-                
-                // NOTA: La configuración final de la ventana Principal (setMaximized, setLocation, 
-                // y el Controlador c.refrescar()) se mueven al método 'done()' del SwingWorker,
-                // ya que eso debe ocurrir después de que la base de datos haya cargado.
-                
             } else {
 
-                
                 anunciousuario.setText("Datos Incorrectos");
 
             }
-            // **********************************************************
-
         } else {
-                anunciousuario.setText("Datos Incorrectos");
-            
+            anunciousuario.setText("Datos Incorrectos");
+
         }
 
     }//GEN-LAST:event_loginActionPerformed
@@ -346,19 +293,14 @@ usuariosDAO modSql = new usuariosDAO();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_formMouseDragged
 
     private void panelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMouseDragged
         int x = this.getLocation().x + evt.getX() - xMouse;
-        int y = this.getLocation().y + evt.getY() - yMouse; 
-        this.setLocation(x, y);           // TODO add your handling code here:
+        int y = this.getLocation().y + evt.getY() - yMouse;
+        this.setLocation(x, y);
     }//GEN-LAST:event_panelMouseDragged
-
-    /**
-     * @param args the command line arguments
-     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anunciousuario;
     private javax.swing.JLabel jLabel1;
@@ -379,7 +321,7 @@ usuariosDAO modSql = new usuariosDAO();
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 
-/*    class FondoPanel extends JPanel {
+    /*    class FondoPanel extends JPanel {
 
         private Image imagen;
 
@@ -394,5 +336,5 @@ usuariosDAO modSql = new usuariosDAO();
             super.paint(g);
         }
     }
-*/
+     */
 }

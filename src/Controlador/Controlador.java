@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import notification.NotificacionExitoso;
 
 public class Controlador implements ActionListener {
 
@@ -32,7 +33,6 @@ public class Controlador implements ActionListener {
         cd.refrescar.setEnabled(enabled);
         cd.BtnEliminar.setEnabled(enabled);
         cd.btnEliminarUsuario.setEnabled(enabled);
-        
 
     }
     // Mantenemos las variables originales para compatibilidad
@@ -40,6 +40,7 @@ public class Controlador implements ActionListener {
     private final usuariosDAO udao = new usuariosDAO();
     private final Principal cd;
     private volatile boolean isDatabaseBusy = false;
+
     public Controlador(Principal cd) {
         this.cd = cd;
         // Asignamos los listeners a los componentes de la vista
@@ -92,106 +93,117 @@ public class Controlador implements ActionListener {
      * Carga los datos de los proyectos en un hilo de fondo.
      */
     private void cargarTablaProyectos() {
-    // Ya no necesita apagar botones, 'refrescarDatos' lo hizo.
+        // Ya no necesita apagar botones, 'refrescarDatos' lo hizo.
 
-    SwingWorker<List<Datos>, Void> worker = new SwingWorker<List<Datos>, Void>() {
-        @Override
-        protected List<Datos> doInBackground() throws Exception {
-            return dao.listar();
-        }
-
-        @Override
-        protected void done() {
-            try {
-                List<Datos> lista = get(); 
-                actualizarModeloTablaProyectos(lista);
-            } catch (Exception e) { // Usamos Exception para capturar todo
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(cd, "Error al cargar los datos de proyectos.", "Error", JOptionPane.ERROR_MESSAGE);
-            } finally {
-                // ✅ ¡LA MAGIA DE LA CADENA!
-                // Al terminar, llamamos a la siguiente tarea.
-                cargarTablaUsuarios();
+        SwingWorker<List<Datos>, Void> worker = new SwingWorker<List<Datos>, Void>() {
+            @Override
+            protected List<Datos> doInBackground() throws Exception {
+                return dao.listar();
             }
-        }
-    };
-    worker.execute();
-}
+
+            @Override
+            protected void done() {
+                try {
+                    List<Datos> lista = get();
+                    actualizarModeloTablaProyectos(lista);
+                } catch (Exception e) { // Usamos Exception para capturar todo
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(cd, "Error al cargar los datos de proyectos.", "Error", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    // ✅ ¡LA MAGIA DE LA CADENA!
+                    // Al terminar, llamamos a la siguiente tarea.
+                    cargarTablaUsuarios();
+                }
+            }
+        };
+        worker.execute();
+    }
+
     /**
      * Carga los datos de los usuarios en un hilo de fondo.
      */
     private void cargarTablaUsuarios() {
-    SwingWorker<List<usuarios>, Void> worker = new SwingWorker<List<usuarios>, Void>() {
-        @Override
-        protected List<usuarios> doInBackground() throws Exception {
-            return udao.listarUser();
-        }
-
-        @Override
-        protected void done() {
-            try {
-                List<usuarios> lista = get();
-                actualizarModeloTablaUsuarios(lista);
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(cd, "Error al cargar los datos de usuarios.", "Error", JOptionPane.ERROR_MESSAGE);
-            } finally {
-                // ✅ ¡FIN DE LA CADENA!
-                // Como esta es la última tarea, volvemos a encender
-                // todos los botones para el usuario.
-                setDBButtonsEnabled(true);
+        SwingWorker<List<usuarios>, Void> worker = new SwingWorker<List<usuarios>, Void>() {
+            @Override
+            protected List<usuarios> doInBackground() throws Exception {
+                return udao.listarUser();
             }
-        }
-    };
-    worker.execute();
-}
+
+            @Override
+            protected void done() {
+                try {
+                    List<usuarios> lista = get();
+                    actualizarModeloTablaUsuarios(lista);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(cd, "Error al cargar los datos de usuarios.", "Error", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    // ✅ ¡FIN DE LA CADENA!
+                    // Como esta es la última tarea, volvemos a encender
+                    // todos los botones para el usuario.
+                    setDBButtonsEnabled(true);
+                }
+            }
+        };
+        worker.execute();
+    }
+
     /**
      * Agrega un nuevo proyecto en un hilo de fondo.
      */
     private void actualizarDatos(Datos datosNuevos) {
-    // 1. Verificamos el "letrero".
-    if (isDatabaseBusy) {
-        JOptionPane.showMessageDialog(cd, "Espere a que termine la operación actual...");
-        return;
+        // 1. Verificamos el "letrero".
+        if (isDatabaseBusy) {
+            JOptionPane.showMessageDialog(cd, "Espere a que termine la operación actual...");
+            return;
+        }
+
+        // 2. Ponemos el "letrero" y apagamos botones.
+        isDatabaseBusy = true;
+        setDBButtonsEnabled(false);
+
+        SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
+            @Override
+            protected Boolean doInBackground() throws Exception {
+                // 3. Llamamos al DAO para que haga el trabajo pesado
+                return dao.actualizar(datosNuevos);
+            }
+
+            @Override
+            protected void done() {
+                boolean exito = false;
+                try {
+                    exito = get();
+                    if (exito) {
+                        //------------------------------------------------------------------
+                        String mensajeUno = "Proyecto actualizado";
+                        String mensajeDos = "exitosamente";
+                        //    JOptionPane.showMessageDialog(cd, "Proyecto actualizado exitosamente.");
+                        NotificacionExitoso notificacion = new NotificacionExitoso(mensajeUno, mensajeDos);
+                        
+                        notificacion.setVisible(true);
+
+                        //------------------------------------------------------------------
+                    } else {
+                        JOptionPane.showMessageDialog(cd, "No se pudo actualizar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(cd, "Error grave al actualizar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    // 4. SIEMPRE desbloqueamos, pero solo refrescamos si tuvo éxito.
+                    isDatabaseBusy = false;
+                    setDBButtonsEnabled(true);
+                }
+
+                if (exito) {
+                    refrescarDatos(); // Refrescamos la tabla principal
+                }
+            }
+        };
+        worker.execute();
     }
 
-    // 2. Ponemos el "letrero" y apagamos botones.
-    isDatabaseBusy = true;
-    setDBButtonsEnabled(false);
-
-    SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
-        @Override
-        protected Boolean doInBackground() throws Exception {
-            // 3. Llamamos al DAO para que haga el trabajo pesado
-            return dao.actualizar(datosNuevos);
-        }
-
-        @Override
-        protected void done() {
-            boolean exito = false;
-            try {
-                exito = get();
-                if (exito) {
-                    JOptionPane.showMessageDialog(cd, "Proyecto actualizado exitosamente.");
-                } else {
-                    JOptionPane.showMessageDialog(cd, "No se pudo actualizar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(cd, "Error grave al actualizar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
-            } finally {
-                // 4. SIEMPRE desbloqueamos, pero solo refrescamos si tuvo éxito.
-                isDatabaseBusy = false;
-                setDBButtonsEnabled(true);
-            }
-            
-            if (exito) {
-                refrescarDatos(); // Refrescamos la tabla principal
-            }
-        }
-    };
-    worker.execute();
-}
     private void agregarDatos() {
         setDBButtonsEnabled(false);
         Datos d = new Datos();
@@ -246,54 +258,54 @@ public class Controlador implements ActionListener {
     /**
      * Elimina un proyecto seleccionado en un hilo de fondo.
      */
-private void eliminarDatos() {
-    int fila = cd.Tabla.getSelectedRow();
-    if (fila == -1) {
-        mostrarNotificacionFaltaInfo();
-        return;
-    }
+    private void eliminarDatos() {
+        int fila = cd.Tabla.getSelectedRow();
+        if (fila == -1) {
+            mostrarNotificacionFaltaInfo();
+            return;
+        }
 
-    notification.NotiEliminar dialog = new notification.NotiEliminar(cd, true);
-    dialog.setLocationRelativeTo(cd);
-    dialog.setVisible(true);
+        notification.NotiEliminar dialog = new notification.NotiEliminar(cd, true);
+        dialog.setLocationRelativeTo(cd);
+        dialog.setVisible(true);
 
-    if (dialog.isContinuePressed()) {
-        try {
-            int modelRow = cd.Tabla.convertRowIndexToModel(fila);
-            int id = Integer.parseInt(cd.Tabla.getModel().getValueAt(modelRow, 0).toString());
+        if (dialog.isContinuePressed()) {
+            try {
+                int modelRow = cd.Tabla.convertRowIndexToModel(fila);
+                int id = Integer.parseInt(cd.Tabla.getModel().getValueAt(modelRow, 0).toString());
 
-            // ¡NO bloqueamos nada!
-            SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
-                @Override
-                protected Boolean doInBackground() throws Exception {
-                    return dao.delete(id);
-                }
-
-                @Override
-                protected void done() {
-                    try {
-                        boolean exito = get();
-                        if (exito) {
-                            JOptionPane.showMessageDialog(cd, "El proyecto ha sido eliminado.");
-                            // ✅ Le decimos al "Jefe" que refresque.
-                            refrescarDatos();
-                        } else {
-                            JOptionPane.showMessageDialog(cd, "No se pudo eliminar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        JOptionPane.showMessageDialog(cd, "Error grave al eliminar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                // ¡NO bloqueamos nada!
+                SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
+                    @Override
+                    protected Boolean doInBackground() throws Exception {
+                        return dao.delete(id);
                     }
-                    // ¡NO hay 'finally' aquí!
-                }
-            };
-            worker.execute();
-            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(cd, "Error: El ID del proyecto no es válido.");
+
+                    @Override
+                    protected void done() {
+                        try {
+                            boolean exito = get();
+                            if (exito) {
+                                JOptionPane.showMessageDialog(cd, "El proyecto ha sido eliminado.");
+                                // ✅ Le decimos al "Jefe" que refresque.
+                                refrescarDatos();
+                            } else {
+                                JOptionPane.showMessageDialog(cd, "No se pudo eliminar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(cd, "Error grave al eliminar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        // ¡NO hay 'finally' aquí!
+                    }
+                };
+                worker.execute();
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(cd, "Error: El ID del proyecto no es válido.");
+            }
         }
     }
-}
 
     /**
      * Elimina un usuario seleccionado en un hilo de fondo.
@@ -421,89 +433,78 @@ private void eliminarDatos() {
         }
     }
 
-public void tablaDobleClic(MouseEvent evt) {
-    if (evt.getClickCount() == 2) {
-        JTable tabla = (JTable) evt.getSource();
-        int filaSeleccionada = tabla.getSelectedRow();
-        if (filaSeleccionada < 0) return;
-
-        try {
-            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-            int filaModelo = tabla.convertRowIndexToModel(filaSeleccionada);
-
-            // --- 1. Obtenemos los datos de la fila (como Strings) ---
-            String id = model.getValueAt(filaModelo, 0).toString();
-            String pnf = model.getValueAt(filaModelo, 1).toString();
-            String sede = model.getValueAt(filaModelo, 2).toString();
-            String trayecto = model.getValueAt(filaModelo, 3).toString();
-            String seccion = model.getValueAt(filaModelo, 4).toString();
-            String profesor = model.getValueAt(filaModelo, 5).toString();
-            String titulo = model.getValueAt(filaModelo, 6).toString();
-            String integrantes = model.getValueAt(filaModelo, 7).toString();
-            String fecha = model.getValueAt(filaModelo, 8).toString();
-            String url = model.getValueAt(filaModelo, 9).toString();
-            
-            // --- 2. Abrimos la ventana de PREVISUALIZACIÓN ---
-            PrevisualizarInfo previsualizarDialog = new PrevisualizarInfo(cd, true);
-            
-            // Llenamos los campos del previsualizador (ajusta los nombres si es necesario)
-            previsualizarDialog.txtIdPre.setText(id);
-            previsualizarDialog.txtPNFPre.setText(pnf);
-            previsualizarDialog.txtSedePre.setText(sede);
-            previsualizarDialog.txtTrayectoPre.setText(trayecto);
-            previsualizarDialog.txtSeccionPre.setText(seccion);
-            previsualizarDialog.txtProfesorPre.setText(profesor);
-            previsualizarDialog.txtTituloPre.setText(titulo);
-            previsualizarDialog.txtIntegrantesPre.setText(integrantes);
-            previsualizarDialog.txtFDPresentacionPre.setText(fecha);
-            previsualizarDialog.setProyectoUrl(url);
-            
-            previsualizarDialog.setLocationRelativeTo(cd);
-            previsualizarDialog.setVisible(true); // El código se detiene aquí...
-
-            // --- 3. El código se reanuda CUANDO se cierra PrevisualizarInfo ---
-            if (previsualizarDialog.isEditPressed()) {
-                // El usuario presionó "Editar", así que abrimos la ventana de EDICIÓN
-                
-                // ✅ --- INICIO DE LA CORRECCIÓN ---
-                
-                // ✅ 3.1: Creamos un objeto 'Datos' con la info de la fila que ya leímos.
-                Datos datosParaEditar = new Datos();
-                datosParaEditar.setId(Integer.parseInt(id)); // Convertimos el ID a int
-                datosParaEditar.setPnf(pnf);
-                datosParaEditar.setSede(sede);
-                datosParaEditar.setTrayecto(trayecto);
-                datosParaEditar.setSeccion(seccion);
-                datosParaEditar.setProfesor(profesor);
-                datosParaEditar.setTproyecto(titulo);
-                datosParaEditar.setTxtnom(integrantes);
-                datosParaEditar.setFdpresentacion(fecha);
-                datosParaEditar.setUrl(url);
-
-                notification.EditarDatos dialogEditar = new notification.EditarDatos(cd, true, datosParaEditar, this);
-                
-              
-                dialogEditar.setLocationRelativeTo(cd);
-                dialogEditar.setVisible(true); // El código se detiene aquí...
-                
-                // --- 4. El código se reanuda CUANDO se cierra EditarDatos ---
-                Datos datosParaActualizar = dialogEditar.getDatosActualizados();
-                
-                if (datosParaActualizar != null) {
-                    // El usuario presionó "Guardar Cambios"
-                    // Llamamos a nuestro nuevo SwingWorker para actualizar la BD
-                    actualizarDatos(datosParaActualizar);
-                }
-                // Si 'datosParaActualizar' es null, el usuario canceló, no hacemos nada.
+    public void tablaDobleClic(MouseEvent evt) {
+        if (evt.getClickCount() == 2) {
+            JTable tabla = (JTable) evt.getSource();
+            int filaSeleccionada = tabla.getSelectedRow();
+            if (filaSeleccionada < 0) {
+                return;
             }
-            // Si 'isEditPressed' es false, el usuario cerró la previsualización, no hacemos nada.
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(cd, "Hubo un error al mostrar los datos del proyecto.");
-            e.printStackTrace();
+            try {
+                DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+                int filaModelo = tabla.convertRowIndexToModel(filaSeleccionada);
+
+                // --- 1. Obtenemos los datos de la fila (como Strings) ---
+                String id = model.getValueAt(filaModelo, 0).toString();
+                String pnf = model.getValueAt(filaModelo, 1).toString();
+                String sede = model.getValueAt(filaModelo, 2).toString();
+                String trayecto = model.getValueAt(filaModelo, 3).toString();
+                String seccion = model.getValueAt(filaModelo, 4).toString();
+                String profesor = model.getValueAt(filaModelo, 5).toString();
+                String titulo = model.getValueAt(filaModelo, 6).toString();
+                String integrantes = model.getValueAt(filaModelo, 7).toString();
+                String fecha = model.getValueAt(filaModelo, 8).toString();
+                String url = model.getValueAt(filaModelo, 9).toString();
+
+                // --- 2. Abrimos la ventana de PREVISUALIZACIÓN ---
+                PrevisualizarInfo previsualizarDialog = new PrevisualizarInfo(cd, true);
+
+                // Llenamos los campos del previsualizador (ajusta los nombres si es necesario)
+                previsualizarDialog.txtIdPre.setText(id);
+                previsualizarDialog.txtPNFPre.setText(pnf);
+                previsualizarDialog.txtSedePre.setText(sede);
+                previsualizarDialog.txtTrayectoPre.setText(trayecto);
+                previsualizarDialog.txtSeccionPre.setText(seccion);
+                previsualizarDialog.txtProfesorPre.setText(profesor);
+                previsualizarDialog.txtTituloPre.setText(titulo);
+                previsualizarDialog.txtIntegrantesPre.setText(integrantes);
+                previsualizarDialog.txtFDPresentacionPre.setText(fecha);
+                previsualizarDialog.setProyectoUrl(url);
+
+                previsualizarDialog.setLocationRelativeTo(cd);
+                previsualizarDialog.setVisible(true);
+                if (previsualizarDialog.isEditPressed()) {
+                    Datos datosParaEditar = new Datos();
+                    datosParaEditar.setId(Integer.parseInt(id));
+                    datosParaEditar.setPnf(pnf);
+                    datosParaEditar.setSede(sede);
+                    datosParaEditar.setTrayecto(trayecto);
+                    datosParaEditar.setSeccion(seccion);
+                    datosParaEditar.setProfesor(profesor);
+                    datosParaEditar.setTproyecto(titulo);
+                    datosParaEditar.setTxtnom(integrantes);
+                    datosParaEditar.setFdpresentacion(fecha);
+                    datosParaEditar.setUrl(url);
+
+                    notification.EditarDatos dialogEditar = new notification.EditarDatos(cd, true, datosParaEditar, this);
+
+                    dialogEditar.setLocationRelativeTo(cd);
+                    dialogEditar.setVisible(true);
+                    Datos datosParaActualizar = dialogEditar.getDatosActualizados();
+
+                    if (datosParaActualizar != null) {
+                        actualizarDatos(datosParaActualizar);
+                    }
+                }
+
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(cd, "Hubo un error al mostrar los datos del proyecto.");
+                e.printStackTrace();
+            }
         }
     }
-}
 
     private void mostrarNotificacionFaltaInfo() {
         NotificacionFaltaInfo notificacion = new NotificacionFaltaInfo();

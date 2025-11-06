@@ -127,15 +127,6 @@ public class Datos {
     public void setUrl(String url) {
         this.url = url;
     }
-
-    // ----------------------------------------------------
-    // MÉTODOS DE UTILIDAD (Añadidos para seguir buenas prácticas)
-    // ----------------------------------------------------
-
-    /**
-     * Genera una representación en texto del objeto, ideal para depuración.
-     * En lugar de ver "Modelo.Datos@1a2b3c4d", verás todos los datos del objeto.
-     */
     @Override
     public String toString() {
         return "Datos{" +
@@ -151,11 +142,6 @@ public class Datos {
                 ", url='" + url + '\'' +
                 '}';
     }
-
-    /**
-     * Compara este objeto con otro para ver si son "iguales".
-     * Se considera que dos objetos 'Datos' son iguales si tienen el mismo ID.
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -163,11 +149,6 @@ public class Datos {
         Datos datos = (Datos) o;
         return id == datos.id;
     }
-
-    /**
-     * Genera un código hash basado en el ID.
-     * Es necesario implementarlo si se implementa equals().
-     */
     @Override
     public int hashCode() {
         return Objects.hash(id);

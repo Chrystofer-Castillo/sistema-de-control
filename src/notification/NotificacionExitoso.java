@@ -4,19 +4,75 @@
  */
 package notification;
 
+import javax.swing.Timer;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Chrys
  */
 public class NotificacionExitoso extends javax.swing.JFrame {
-    
+
+    private static final int TIEMPO_CIERRE_MS = 4000;
+    private static final int MARGEN_SUPERIOR = 50;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotificacionExitoso.class.getName());
 
     /**
      * Creates new form NotificacionFaltaSeleccionarnuv
      */
-    public NotificacionExitoso() {
+    public NotificacionExitoso(String mensajeUno, String mensajeDos) {
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         initComponents();
+        setAlwaysOnTop(true);
+        Msj1.setText(mensajeUno);
+        Msj2.setText(mensajeDos);
+        posicionarYTemporizar();
+    }
+
+    private void posicionarYTemporizar() {
+        // 1. Posicionamiento: Centrado horizontalmente y arriba
+        centrarArriba();
+
+        // 2. Cierre automático: Inicializamos y arrancamos el Timer
+        iniciarCierreAutomatico();
+    }
+
+    private void centrarArriba() {
+        // Obtiene las dimensiones de la pantalla completa
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Obtiene las dimensiones del JFrame actual
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
+
+        // Calcula la posición X para centrar horizontalmente:
+        int x = (screenSize.width - frameWidth) / 2;
+
+        // La posición Y es el margen superior deseado:
+        int y = MARGEN_SUPERIOR;
+
+        // Establece la nueva ubicación del JFrame
+        setLocation(x, y);
+    }
+
+    private void iniciarCierreAutomatico() {
+        // Creamos un ActionListener que se ejecutará cuando el Timer termine
+        ActionListener closeAction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((Timer) e.getSource()).stop();
+                dispose();
+            }
+        };
+
+        // Creamos el Timer: se dispara una vez (4000 ms)
+        Timer timer = new Timer(TIEMPO_CIERRE_MS, closeAction);
+        timer.setRepeats(false); // Asegura que solo se ejecute una vez
+        timer.start(); // Inicia la cuenta regresiva
     }
 
     /**
@@ -31,8 +87,8 @@ public class NotificacionExitoso extends javax.swing.JFrame {
         round11 = new componentes.round1();
         panelRound2 = new Clases.PanelRound();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        Msj2 = new javax.swing.JLabel();
+        Msj1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -52,21 +108,24 @@ public class NotificacionExitoso extends javax.swing.JFrame {
         panelRound2.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NOTIFICACIÓN");
         panelRound2.add(jLabel1, new java.awt.GridBagConstraints());
 
         round11.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 330, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("exitosamente!");
-        round11.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 20));
+        Msj2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Msj2.setForeground(new java.awt.Color(30, 30, 30));
+        Msj2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Msj2.setText("Msj2");
+        round11.add(Msj2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 20));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Datos cargados");
-        round11.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, -1));
+        Msj1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Msj1.setForeground(new java.awt.Color(30, 30, 30));
+        Msj1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Msj1.setText("Msj1");
+        round11.add(Msj1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,11 +145,10 @@ public class NotificacionExitoso extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Msj1;
+    private javax.swing.JLabel Msj2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private Clases.PanelRound panelRound2;
     private componentes.round1 round11;
     // End of variables declaration//GEN-END:variables

@@ -15,10 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import notification.Csesion;
 
-/**
- *
- * @author Chrys y Manuel
- */
 public class Principal extends javax.swing.JFrame {
 
     public Controlador c;
@@ -28,17 +24,12 @@ public class Principal extends javax.swing.JFrame {
 
     CardLayout cardLayout;
 
-    /**
-     * Creates new form Login
-     */
     public Principal() {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
         FondoPanel fondo = new FondoPanel();
-        // 2. Establece ESE panel como el contenedor principal de la ventana
         this.setContentPane(new FondoPanel());
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //FondoPanell.setBackground(new Color(0, 0, 0, 0));
 
         botones = new JButton[]{
             btnInicio,
@@ -48,9 +39,8 @@ public class Principal extends javax.swing.JFrame {
             btnConfig
         };
         for (JButton boton : botones) {
-            boton.setContentAreaFilled(true); // Asegura que el área de contenido use el setBackground
-            boton.setOpaque(true);           // Asegura que el componente sea totalmente opaco
-            // Opcional: Esto ayuda en botones con imágenes
+            boton.setContentAreaFilled(true);
+            boton.setOpaque(true);
             boton.setBorderPainted(false);
         }
         this.setTitle("Menú Principal");
@@ -89,12 +79,6 @@ public class Principal extends javax.swing.JFrame {
             btnCargarDatos.setVisible(false);
             BtnEliminar.setVisible(false);
         }
-
-//        Tabla.addMouseListener(new MouseAdapter() {
-//            public void mouseClicked(MouseEvent evt) {
-//                TablaMouseClicked(evt);
-//            }
-//        });
     }
 
     public void validar() {
@@ -157,7 +141,6 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         TablaUser = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        btnEditar = new componentes.MyButton();
         btnRegistrarU = new componentes.MyButton();
         btnEliminarUsuario = new componentes.MyButton();
         pnlConfiguracion = new componentes.round1();
@@ -756,22 +739,6 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
 
-        btnEditar.setBackground(new java.awt.Color(62, 115, 248));
-        btnEditar.setBorder(null);
-        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setText("Editar");
-        btnEditar.setBorderColor(new java.awt.Color(242, 242, 242));
-        btnEditar.setColor(new java.awt.Color(62, 115, 248));
-        btnEditar.setColorClick(new java.awt.Color(62, 96, 234));
-        btnEditar.setColorOver(new java.awt.Color(103, 181, 255));
-        btnEditar.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        btnEditar.setRadius(25);
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
         btnRegistrarU.setBackground(new java.awt.Color(62, 115, 248));
         btnRegistrarU.setBorder(null);
         btnRegistrarU.setForeground(new java.awt.Color(255, 255, 255));
@@ -809,25 +776,19 @@ public class Principal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(258, 258, 258)
-                .addComponent(btnRegistrarU, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(19, 19, 19)
+                .addComponent(btnRegistrarU, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(403, 403, 403)
                 .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnRegistrarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegistrarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -845,7 +806,7 @@ public class Principal extends javax.swing.JFrame {
             pnlGestionUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGestionUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1099,9 +1060,6 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        //CATEGORIA BOTONES 
-
-        //FINCATEGORIA :)
         titulo1.setText("Inicio");
         cardLayout.show(ventana, "inicio");     // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_btnInicioActionPerformed
@@ -1111,7 +1069,6 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
 
     private void lblRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRolMouseClicked
-        // TODO add your handling code here:
     }//GEN-LAST:event_lblRolMouseClicked
 
     private void lblNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreMouseClicked
@@ -1119,47 +1076,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblNombreMouseClicked
 
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
-        /*        Principal princ = new Principal();
 
-        Controlador c = new Controlador(princ);*/
- /*   if (evt.getClickCount() == 2) { // Verificar si es un doble clic
-            int fila = Tabla.getSelectedRow(); // Obtener la fila seleccionada
-
-            if (fila != -1) { // Verificar que se ha seleccionado una fila
-
-                // 💡 REEMPLAZA el código de la URL con la llamada al controlador
-                if (this.c != null) {
-                    // Llama al método 'editar()' de tu controlador para abrir el JDialog 'EditarDatos'.
-                    this.c.editar();
-                } else {
-                    // Esto es solo una advertencia si el controlador no está enlazado
-                    JOptionPane.showMessageDialog(this, "El controlador no está inicializado.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                // FIN DE LA MODIFICACIÓN
-            }
-        }
-         */
-//        if (evt.getClickCount() == 2) { // Verificar si es un doble clic
-//            int fila = Tabla.getSelectedRow(); // Obtener la fila seleccionada
-//            if (fila != -1) { // Verificar que se ha seleccionado una fila
-//                String url = Tabla.getValueAt(fila, 9).toString(); // Obtener la URL de la columna 10 (índice 9)
-//                try {
-//                    Desktop.getDesktop().browse(new URI(url)); // Abrir la URL en el navegador
-//                } catch (IOException | URISyntaxException ex) {
-//                    ex.printStackTrace(); // Manejar excepciones
-//                    JOptionPane.showMessageDialog(this, "Error al abrir la URL: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//
-//        }
     }//GEN-LAST:event_TablaMouseClicked
 
     private void ocultarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ocultarMenuActionPerformed
@@ -1174,22 +1097,18 @@ public class Principal extends javax.swing.JFrame {
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         Csesion cs = new Csesion();
         cs.setVisible(true);
-//        cs.setLocationRelativeTo(null);      cs.setBackground(new Color(0, 0, 0, 0));
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnEditarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTablaActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarTablaActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void btnRegistrarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUActionPerformed
         Rusuario RU = new Rusuario();
         RU.setVisible(true);
         RU.setLocationRelativeTo(null);
-// TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarUActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -1200,7 +1119,7 @@ public class Principal extends javax.swing.JFrame {
         seccion.setText("");
         txtnom.setText("");
         profesor.setText(mod.getCi());
-        url.setText("");// TODO add your handling code here:
+        url.setText("");
     }//GEN-LAST:event_guardarActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
@@ -1211,15 +1130,14 @@ public class Principal extends javax.swing.JFrame {
         seccion.setText("");
         txtnom.setText("");
         profesor.setText(mod.getCi());
-        url.setText("");// TODO add your handling code here:
+        url.setText("");
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     private void txtnomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnomKeyReleased
-        validar();        // TODO add your handling code here:
+        validar();
     }//GEN-LAST:event_txtnomKeyReleased
 
     private void urlKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_urlKeyReleased
-        // TODO add your handling code here:
     }//GEN-LAST:event_urlKeyReleased
 
     private void tproyectoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tproyectoKeyReleased
@@ -1240,20 +1158,17 @@ public class Principal extends javax.swing.JFrame {
 
     private void pnfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnfActionPerformed
         String seleccion = (String) pnf.getSelectedItem();
-        sede.removeAllItems(); // Limpiamos las sedes previas
+        sede.removeAllItems();
 
         if (seleccion.equals("-")) {
-            // Agregamos las sedes correspondientes a Contaduría Pública
             sede.addItem("-");
         } else if (seleccion.equals("Informática")) {
-            // Agregamos las sedes correspondientes a Informática
             sede.addItem("Cabimas");
             sede.addItem("Ciudad Ojeda");
             sede.addItem("Los Puertos de Altagracia");
             sede.addItem("San Francisco");
             sede.addItem("San Pedro");
         } else if (seleccion.equals("Contaduría Pública")) {
-            // Agregamos las sedes correspondientes a Informática
             sede.addItem("Cabimas");
             sede.addItem("Mene Grande");
             sede.addItem("Ciudad Ojeda");
@@ -1261,11 +1176,10 @@ public class Principal extends javax.swing.JFrame {
             sede.addItem("San Francisco");
             sede.addItem("San Pedro");
         } else if (seleccion.equals("Educación Especial")) {
-            // Agregamos las sedes correspondientes a Educación Especial
             sede.addItem("Cabimas");
             sede.addItem("Trujillo");
         } else if (seleccion.equals("Agroalimentación")) {
-            // Agregamos las sedes correspondientes a Agroalimentación
+
             sede.addItem("Cabimas");
             sede.addItem("San Francisco");
             sede.addItem("Bobures");
@@ -1274,22 +1188,17 @@ public class Principal extends javax.swing.JFrame {
             sede.addItem("Bachaquero");
             sede.addItem("Ciudad Ojeda");
         } else if (seleccion.equals("Historia")) {
-            // Agregamos las sedes correspondientes a Historia
             sede.addItem("Trujillo");
         }
     }//GEN-LAST:event_pnfActionPerformed
 
     private void seccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_seccionKeyReleased
-        validar();        // TODO add your handling code here:
+        validar();
     }//GEN-LAST:event_seccionKeyReleased
 
     private void profesorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_profesorKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_profesorKeyReleased
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_profesorKeyReleased
 
     private void btnModoClaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoClaroActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1314,7 +1223,6 @@ public class Principal extends javax.swing.JFrame {
     public componentes.MyButton btnCargarDatos;
     public componentes.MyButton btnCerrarSesion;
     public componentes.MyButton btnConfig;
-    public componentes.MyButton btnEditar;
     public componentes.MyButton btnEditarTabla;
     public componentes.MyButton btnEliminarUsuario;
     public componentes.MyButton btnGestionarUsuarios;

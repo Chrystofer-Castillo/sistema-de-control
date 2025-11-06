@@ -58,6 +58,7 @@ public class Csesion extends javax.swing.JFrame {
         panelRound2.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ADVERTENCIA");
         panelRound2.add(jLabel1, new java.awt.GridBagConstraints());
@@ -65,11 +66,13 @@ public class Csesion extends javax.swing.JFrame {
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿Desea Continuar?");
         panelRound1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 370, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(30, 30, 30));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Estas a punto de cerrar sesión");
         panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, 30));
