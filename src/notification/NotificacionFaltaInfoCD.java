@@ -1,21 +1,22 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package notification;
 
 /**
  *
- * @author Chrys
+ * @author Manuel Lopez
  */
-public class NotificacionFaltaInfoCD extends javax.swing.JFrame {
+public class NotificacionFaltaInfoCD extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotificacionFaltaInfoCD.class.getName());
 
     /**
-     * Creates new form NotificacionFaltaSeleccionarnuv
+     * Creates new form NotificacionFaltaInfoCD
      */
-    public NotificacionFaltaInfoCD() {
+    public NotificacionFaltaInfoCD(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -31,11 +32,11 @@ public class NotificacionFaltaInfoCD extends javax.swing.JFrame {
         round11 = new componentes.round1();
         panelRound2 = new Clases.PanelRound();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        msj2CD = new javax.swing.JLabel();
+        msj1CD = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(370, 120));
 
         round11.setBackground(new java.awt.Color(217, 216, 217));
         round11.setRoundBottomLeft(40);
@@ -58,27 +59,25 @@ public class NotificacionFaltaInfoCD extends javax.swing.JFrame {
 
         round11.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 330, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("el formulario para continuar");
-        round11.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 20));
+        msj2CD.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        msj2CD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        msj2CD.setText("MSJ2");
+        round11.add(msj2CD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 20));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Falta rellenar información en");
-        round11.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, -1));
+        msj1CD.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        msj1CD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        msj1CD.setText("MSJ1");
+        round11.add(msj1CD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(round11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(round11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(round11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+            .addComponent(round11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
 
         pack();
@@ -88,11 +87,10 @@ public class NotificacionFaltaInfoCD extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel msj1CD;
+    private javax.swing.JLabel msj2CD;
     private Clases.PanelRound panelRound2;
     private componentes.round1 round11;
     // End of variables declaration//GEN-END:variables

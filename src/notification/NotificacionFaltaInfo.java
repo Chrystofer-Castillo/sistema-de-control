@@ -1,21 +1,22 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package notification;
 
 /**
  *
- * @author Chrys
+ * @author Manuel Lopez
  */
-public class NotificacionFaltaInfo extends javax.swing.JFrame {
+public class NotificacionFaltaInfo extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotificacionFaltaInfo.class.getName());
 
     /**
-     * Creates new form NotificacionFaltaSeleccionarnuv
+     * Creates new form NewJDialog
      */
-    public NotificacionFaltaInfo() {
+    public NotificacionFaltaInfo(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -31,11 +32,10 @@ public class NotificacionFaltaInfo extends javax.swing.JFrame {
         round11 = new componentes.round1();
         panelRound2 = new Clases.PanelRound();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        msj2falta = new javax.swing.JLabel();
+        msj1falta = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         round11.setBackground(new java.awt.Color(217, 216, 217));
         round11.setRoundBottomLeft(40);
@@ -58,15 +58,15 @@ public class NotificacionFaltaInfo extends javax.swing.JFrame {
 
         round11.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 330, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("para continuar");
-        round11.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 20));
+        msj2falta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        msj2falta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        msj2falta.setText("MSJ2");
+        round11.add(msj2falta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 20));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Necesita seleccionar un proyecto");
-        round11.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, -1));
+        msj1falta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        msj1falta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        msj1falta.setText("MSJ1");
+        round11.add(msj1falta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,9 +78,9 @@ public class NotificacionFaltaInfo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 117, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(round11, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                .addComponent(round11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -90,11 +90,10 @@ public class NotificacionFaltaInfo extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel msj1falta;
+    private javax.swing.JLabel msj2falta;
     private Clases.PanelRound panelRound2;
     private componentes.round1 round11;
     // End of variables declaration//GEN-END:variables

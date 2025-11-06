@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import notification.NotificacionExitoso;
+import notification.NotificacionExitosa;
 
 public class Controlador implements ActionListener {
 
@@ -176,10 +176,10 @@ public class Controlador implements ActionListener {
                     exito = get();
                     if (exito) {
                         //------------------------------------------------------------------
-                        String mensajeUno = "Proyecto actualizado";
-                        String mensajeDos = "exitosamente";
+                        mensajeUno = "Proyecto actualizado";
+                        mensajeDos = "exitosamente";
                         //    JOptionPane.showMessageDialog(cd, "Proyecto actualizado exitosamente.");
-                        NotificacionExitoso notificacion = new NotificacionExitoso(mensajeUno, mensajeDos);
+                        NotificacionExitosa notificacion = new NotificacionExitosa(mensajeUno, mensajeDos);
                         
                         notificacion.setVisible(true);
 
