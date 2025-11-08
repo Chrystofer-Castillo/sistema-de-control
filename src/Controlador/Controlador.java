@@ -10,7 +10,6 @@ import notification.NotificacionFaltaInfo;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -29,7 +28,6 @@ public class Controlador implements ActionListener {
         cd.btnVisualizar.setEnabled(enabled);
         cd.btnGestionarUsuarios.setEnabled(enabled);
         cd.btnInicio.setEnabled(enabled);
-        cd.guardar.setEnabled(enabled);
         cd.refrescar.setEnabled(enabled);
         cd.BtnEliminar.setEnabled(enabled);
         cd.btnEliminarUsuario.setEnabled(enabled);
@@ -100,7 +98,6 @@ public class Controlador implements ActionListener {
             protected List<Datos> doInBackground() throws Exception {
                 return dao.listar();
             }
-
             @Override
             protected void done() {
                 try {
@@ -118,7 +115,6 @@ public class Controlador implements ActionListener {
         };
         worker.execute();
     }
-
     /**
      * Carga los datos de los usuarios en un hilo de fondo.
      */
@@ -176,16 +172,19 @@ public class Controlador implements ActionListener {
                     exito = get();
                     if (exito) {
                         //------------------------------------------------------------------
-                        mensajeUno = "Proyecto actualizado";
-                        mensajeDos = "exitosamente";
-                        //    JOptionPane.showMessageDialog(cd, "Proyecto actualizado exitosamente.");
-                        NotificacionExitosa notificacion = new NotificacionExitosa(mensajeUno, mensajeDos);
-                        
+                        String mensajeUno = "Proyecto actualizado";
+                        String mensajeDos = "exitosamente";
+                        NotificacionExitosa notificacion = new NotificacionExitosa(cd, true, mensajeUno, mensajeDos);
                         notificacion.setVisible(true);
-
                         //------------------------------------------------------------------
                     } else {
-                        JOptionPane.showMessageDialog(cd, "No se pudo actualizar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                        //------------------------------------------------------------------
+                        String mensajeUno = "No se pudo actualizar el proyecto.";
+                        String mensajeDos = "";
+                        NotificacionExitosa notificacion = new NotificacionExitosa(cd, true, mensajeUno, mensajeDos);
+                        notificacion.setVisible(true);
+                        //------------------------------------------------------------------
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -507,13 +506,10 @@ public class Controlador implements ActionListener {
     }
 
     private void mostrarNotificacionFaltaInfo() {
-        NotificacionFaltaInfo notificacion = new NotificacionFaltaInfo();
-        Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-        notificacion.setLocation(screen.width - notificacion.getWidth() - 10, 10);
-        notificacion.setBackground(new Color(0, 0, 0, 0));
-        Timer timer = new Timer(5000, e -> notificacion.dispose());
-        timer.setRepeats(false);
-        timer.start();
-        notificacion.setVisible(true);
+                        String msjfalta1 = "Falta rellenar informacion en";
+                        String msjfalta2 = "el formulario para continuar";
+                        NotificacionFaltaInfo notificacion = new NotificacionFaltaInfo(cd, true, msjfalta1, msjfalta2);
+                        notificacion.setVisible(true);
+
     }
 }

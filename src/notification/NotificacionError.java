@@ -4,6 +4,8 @@
  */
 package notification;
 
+import java.awt.Color;
+
 /**
  *
  * @author Chrys
@@ -15,9 +17,13 @@ public class NotificacionError extends javax.swing.JDialog {
     /**
      * Creates new form NotificacionError
      */
-    public NotificacionError(java.awt.Frame parent, boolean modal) {
+    public NotificacionError(java.awt.Frame parent, boolean modal, String mensajeUno, String mensajeDos) {
         super(parent, modal);
+
         initComponents();
+         setBackground(new Color (0,0,0,0));
+    this.msj1error.setText(mensajeUno);
+    this.msj2error.setText(mensajeDos);
     }
 
     @SuppressWarnings("unchecked")

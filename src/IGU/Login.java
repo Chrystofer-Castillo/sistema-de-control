@@ -17,10 +17,8 @@ public class Login extends javax.swing.JFrame {
 
     private int xMouse;
     private int yMouse;
-    // FondoPanel fondo = new FondoPanel();
 
     public Login() {
-//        this.setContentPane(fondo);
         this.setTitle("Iniciar Sesión");
         initComponents();
         setBackground(new Color (0,0,0,0));
@@ -321,20 +319,4 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 
-    /*    class FondoPanel extends JPanel {
-
-        private Image imagen;
-
-        @Override
-        public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/imagenes/uno.jpg")).getImage();
-
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-
-            setOpaque(false);
-
-            super.paint(g);
-        }
-    }
-     */
 }
