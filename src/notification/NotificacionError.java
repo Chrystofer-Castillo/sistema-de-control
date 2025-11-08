@@ -5,6 +5,7 @@
 package notification;
 
 import java.awt.Color;
+import javax.swing.Timer;
 
 /**
  *
@@ -14,16 +15,23 @@ public class NotificacionError extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotificacionError.class.getName());
 
-    /**
-     * Creates new form NotificacionError
-     */
     public NotificacionError(java.awt.Frame parent, boolean modal, String mensajeUno, String mensajeDos) {
         super(parent, modal);
 
         initComponents();
-         setBackground(new Color (0,0,0,0));
+        setBackground(new Color (0,0,0,0));
     this.msj1error.setText(mensajeUno);
     this.msj2error.setText(mensajeDos);
+    Timer timer = new Timer(4000, e -> {
+        dispose();
+    });
+    
+    // 3. Asegúrate de que el timer solo se ejecute UNA vez
+    timer.setRepeats(false);
+    
+    // 4. Inicia el temporizador
+    timer.start();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -37,6 +45,7 @@ public class NotificacionError extends javax.swing.JDialog {
         msj1error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         round11.setBackground(new java.awt.Color(217, 216, 217));
         round11.setRoundBottomLeft(40);

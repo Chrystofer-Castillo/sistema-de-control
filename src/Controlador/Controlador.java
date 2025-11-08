@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import notification.NotificacionError;
 import notification.NotificacionExitosa;
 
 public class Controlador implements ActionListener {
@@ -65,12 +66,15 @@ public class Controlador implements ActionListener {
 
         if (source == cd.guardar) {
             agregarDatos();
+            refrescarDatos();
         } else if (source == cd.refrescar) {
             refrescarDatos();
         } else if (source == cd.BtnEliminar) {
             eliminarDatos();
+            refrescarDatos();
         } else if (source == cd.btnEliminarUsuario) {
             eliminarUsuario();
+            refrescarDatos();
         } else if (source == cd.btnbuscar) {
             buscar();
         }
@@ -105,7 +109,12 @@ public class Controlador implements ActionListener {
                     actualizarModeloTablaProyectos(lista);
                 } catch (Exception e) { // Usamos Exception para capturar todo
                     e.printStackTrace();
-                    JOptionPane.showMessageDialog(cd, "Error al cargar los datos de proyectos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    //------------------------------------------------------------------
+                        String mensajeUno = "Error al cargar los datos de proyectos";
+                        String mensajeDos = "Intente mas tarde";
+                        NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                        notificacion.setVisible(true);
+                    //------------------------------------------------------------------
                 } finally {
                     // ✅ ¡LA MAGIA DE LA CADENA!
                     // Al terminar, llamamos a la siguiente tarea.
@@ -132,7 +141,14 @@ public class Controlador implements ActionListener {
                     actualizarModeloTablaUsuarios(lista);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    JOptionPane.showMessageDialog(cd, "Error al cargar los datos de usuarios.", "Error", JOptionPane.ERROR_MESSAGE);
+                    
+                    //------------------------------------------------------------------
+                        String mensajeUno = "Error al cargar los datos del Usuario";
+                        String mensajeDos = "";
+                        NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                        notificacion.setVisible(true);
+                    //------------------------------------------------------------------
+
                 } finally {
                     // ✅ ¡FIN DE LA CADENA!
                     // Como esta es la última tarea, volvemos a encender
@@ -150,7 +166,13 @@ public class Controlador implements ActionListener {
     private void actualizarDatos(Datos datosNuevos) {
         // 1. Verificamos el "letrero".
         if (isDatabaseBusy) {
-            JOptionPane.showMessageDialog(cd, "Espere a que termine la operación actual...");
+            //------------------------------------------------------------------
+            String msjfalta1 = "Espere a que termine la operación actual...";
+            String msjfalta2 = "";
+            NotificacionFaltaInfo notificacion = new NotificacionFaltaInfo(cd, true, msjfalta1, msjfalta2);
+            notificacion.setVisible(true);
+            //------------------------------------------------------------------
+
             return;
         }
 
@@ -181,14 +203,20 @@ public class Controlador implements ActionListener {
                         //------------------------------------------------------------------
                         String mensajeUno = "No se pudo actualizar el proyecto.";
                         String mensajeDos = "";
-                        NotificacionExitosa notificacion = new NotificacionExitosa(cd, true, mensajeUno, mensajeDos);
+                        NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
                         notificacion.setVisible(true);
                         //------------------------------------------------------------------
 
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    JOptionPane.showMessageDialog(cd, "Error grave al actualizar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                //------------------------------------------------------------------
+                String mensajeUno = "Error grave al actualizar el proyecto.";
+                String mensajeDos = "";
+                NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                notificacion.setVisible(true);
+                //------------------------------------------------------------------
+
                 } finally {
                     // 4. SIEMPRE desbloqueamos, pero solo refrescamos si tuvo éxito.
                     isDatabaseBusy = false;
@@ -220,7 +248,14 @@ public class Controlador implements ActionListener {
             d.setUrl(cd.url.getText());
         } catch (Exception ex) {
             setDBButtonsEnabled(true);
-            JOptionPane.showMessageDialog(cd, "Verifique que todos los campos estén llenos.", "Datos Incompletos", JOptionPane.WARNING_MESSAGE);
+            
+            //------------------------------------------------------------------
+            String msjfalta1 = "Verifique que todos los campos estén llenos.";
+            String msjfalta2 = "";
+            NotificacionFaltaInfo notificacion = new NotificacionFaltaInfo(cd, true, msjfalta1, msjfalta2);
+            notificacion.setVisible(true);
+            //------------------------------------------------------------------
+            
             return;
         }
 
@@ -237,14 +272,30 @@ public class Controlador implements ActionListener {
                 try {
                     boolean exito = get();
                     if (exito) {
-                        JOptionPane.showMessageDialog(cd, "Información cargada exitosamente.");
+                    //------------------------------------------------------------------
+                    String msjexito1 = "Información cargada exitosamente.";
+                    String msjexito2 = "";
+                    NotificacionExitosa notificacion = new NotificacionExitosa(cd, true, msjexito1, msjexito2);
+                    notificacion.setVisible(true);
+                    //------------------------------------------------------------------
                         refrescarDatos(); // Recargamos las tablas
                     } else {
-                        JOptionPane.showMessageDialog(cd, "Hubo un error al cargar la información.", "Error", JOptionPane.ERROR_MESSAGE);
+                        //------------------------------------------------------------------
+                        String mensajeUno = "Hubo un error al cargar la información.";
+                        String mensajeDos = "";
+                        NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                        notificacion.setVisible(true);
+                        //------------------------------------------------------------------
                     }
                 } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
-                    JOptionPane.showMessageDialog(cd, "Error grave al agregar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                    //------------------------------------------------------------------
+                        String mensajeUno = "Error grave al agregar el proyecto.";
+                        String mensajeDos = "";
+                        NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                        notificacion.setVisible(true);
+                    //------------------------------------------------------------------
+                   
                 } finally {
                     cd.guardar.setEnabled(false);
                     setDBButtonsEnabled(true);
@@ -285,15 +336,31 @@ public class Controlador implements ActionListener {
                         try {
                             boolean exito = get();
                             if (exito) {
-                                JOptionPane.showMessageDialog(cd, "El proyecto ha sido eliminado.");
-                                // ✅ Le decimos al "Jefe" que refresque.
+                                //------------------------------------------------------------------
+                                String msjexito1 = "El proyecto ha sido eliminado";
+                                String msjexito2 = "Exitosamente";
+                                NotificacionExitosa notificacion = new NotificacionExitosa(cd, true, msjexito1, msjexito2);
+                                notificacion.setVisible(true);
+                                //------------------------------------------------------------------
+
                                 refrescarDatos();
                             } else {
-                                JOptionPane.showMessageDialog(cd, "No se pudo eliminar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                                //------------------------------------------------------------------
+                                String mensajeUno = "No se pudo eliminar el proyecto.";
+                                String mensajeDos = "";
+                                NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                                notificacion.setVisible(true);
+                                //------------------------------------------------------------------
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            JOptionPane.showMessageDialog(cd, "Error grave al eliminar el proyecto.", "Error", JOptionPane.ERROR_MESSAGE);
+                            //------------------------------------------------------------------
+                            String mensajeUno = "Error grave al eliminar el proyecto.";
+                            String mensajeDos = "";
+                            NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                            notificacion.setVisible(true);
+                            //------------------------------------------------------------------
+
                         }
                         // ¡NO hay 'finally' aquí!
                     }
@@ -301,7 +368,13 @@ public class Controlador implements ActionListener {
                 worker.execute();
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(cd, "Error: El ID del proyecto no es válido.");
+                    //------------------------------------------------------------------
+                        String mensajeUno = "Error: El ID del proyecto no es válido.";
+                        String mensajeDos = "";
+                        NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                        notificacion.setVisible(true);
+                    //------------------------------------------------------------------
+
             }
         }
     }
@@ -312,7 +385,12 @@ public class Controlador implements ActionListener {
     private void eliminarUsuario() {
         int fila = cd.TablaUser.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(cd, "Debe seleccionar un perfil de usuario.");
+            //------------------------------------------------------------------
+            String msjfalta1 = "Debe seleccionar un perfil de usuario.";
+            String msjfalta2 = "";
+            NotificacionFaltaInfo notificacion = new NotificacionFaltaInfo(cd, true, msjfalta1, msjfalta2);
+            notificacion.setVisible(true);
+            //------------------------------------------------------------------
             return;
         }
 
@@ -333,14 +411,29 @@ public class Controlador implements ActionListener {
                 protected void done() {
                     try {
                         if (get()) {
-                            JOptionPane.showMessageDialog(cd, "Usuario eliminado exitosamente.");
+                            //------------------------------------------------------------------
+                            String msjexito1 = "Usuario eliminado exitosamente.";
+                            String msjexito2 = "";
+                            NotificacionExitosa notificacion = new NotificacionExitosa(cd, true, msjexito1, msjexito2);
+                            notificacion.setVisible(true);
+                            //------------------------------------------------------------------
                             refrescarDatos();
                         } else {
-                            JOptionPane.showMessageDialog(cd, "No se pudo eliminar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+                            //------------------------------------------------------------------
+                            String mensajeUno = "No se pudo eliminar el usuario.";
+                            String mensajeDos = "";
+                            NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                            notificacion.setVisible(true);
+                            //------------------------------------------------------------------
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
-                        JOptionPane.showMessageDialog(cd, "Error grave al eliminar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+                            //------------------------------------------------------------------
+                            String mensajeUno = "Error grave al eliminar el usuario.";
+                            String mensajeDos = "";
+                            NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                            notificacion.setVisible(true);
+                            //------------------------------------------------------------------
                     } finally {
                         cd.btnEliminarUsuario.setEnabled(true);
                     }
@@ -499,7 +592,12 @@ public class Controlador implements ActionListener {
 
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(cd, "Hubo un error al mostrar los datos del proyecto.");
+                //------------------------------------------------------------------
+                    String mensajeUno = "Hubo un error al mostrar";
+                    String mensajeDos = "los datos del proyecto.";
+                    NotificacionError notificacion = new NotificacionError(cd, true, mensajeUno, mensajeDos);
+                    notificacion.setVisible(true);
+                //------------------------------------------------------------------
                 e.printStackTrace();
             }
         }

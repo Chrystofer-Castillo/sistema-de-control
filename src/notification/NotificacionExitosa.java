@@ -11,12 +11,12 @@ public class NotificacionExitosa extends javax.swing.JDialog {
         initComponents();
     }
     
-    public NotificacionExitosa(java.awt.Frame parent, boolean modal, String mensajeUno, String mensajeDos) {
+    public NotificacionExitosa(java.awt.Frame parent, boolean modal, String msjexito1, String msjexito2) {
         super(parent, modal);
         initComponents(); 
         setBackground(new Color(0,0,0,0));
-        msj1exito.setText(mensajeUno);
-        msj2exito.setText(mensajeDos);
+        msj1exito.setText(msjexito1);
+        msj2exito.setText(msjexito2);
         Timer timer = new Timer(4000, e -> {
         dispose();
     });
