@@ -1,9 +1,7 @@
 package IGU;
-//Esto es una prueba
 
 import Modelo.usuarios;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import Controlador.Controlador;
@@ -36,7 +34,7 @@ public class Principal extends javax.swing.JFrame {
             btnCargarDatos,
             btnVisualizar,
             btnGestionarUsuarios,
-            btnConfig
+            btnTheme
         };
         for (JButton boton : botones) {
             boton.setContentAreaFilled(true);
@@ -80,7 +78,9 @@ public class Principal extends javax.swing.JFrame {
             BtnEliminar.setVisible(false);
         }
     }
-
+public String getUsuarioCi() {
+    return this.mod.getCi();
+}
     public void validar() {
         if (tproyecto.getText().isEmpty() || sede.getSelectedItem().toString().isEmpty() || pnf.getSelectedItem().toString().isEmpty() || trayecto.getSelectedItem().toString().isEmpty() || seccion.getText().isEmpty() || tproyecto.getText().isEmpty() || txtnom.getText().isEmpty() || url.getText().isEmpty()) {
             guardar.setEnabled(false);
@@ -133,7 +133,7 @@ public class Principal extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         filtrar = new javax.swing.JComboBox<>();
-        btnEditarTabla = new componentes.MyButton();
+        btnExtraerTabla = new componentes.MyButton();
         BtnEliminar = new componentes.MyButton();
         btnbuscar = new componentes.MyButton();
         refrescar = new componentes.MyButton();
@@ -150,7 +150,7 @@ public class Principal extends javax.swing.JFrame {
         menu = new componentes.round1();
         btnCargarDatos = new componentes.MyButton();
         btnCerrarSesion = new componentes.MyButton();
-        btnConfig = new componentes.MyButton();
+        btnTheme = new componentes.MyButton();
         btnVisualizar = new componentes.MyButton();
         btnGestionarUsuarios = new componentes.MyButton();
         btnInicio = new componentes.MyButton();
@@ -586,26 +586,26 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
 
-        filtrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "ID", "Sede", "PNF", "Trayecto", "Seccion", "Titulo de proyecto", "Nombres de integrantes", "Fecha de presentacion" }));
+        filtrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "ID", "Sede", "PNF", "Trayecto", "Seccion", "Profesor", "Titulo de proyecto", "Nombres de integrantes", "Fecha de presentacion" }));
         filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtrarActionPerformed(evt);
             }
         });
 
-        btnEditarTabla.setBackground(new java.awt.Color(62, 115, 248));
-        btnEditarTabla.setBorder(null);
-        btnEditarTabla.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditarTabla.setText("Editar");
-        btnEditarTabla.setBorderColor(new java.awt.Color(242, 242, 242));
-        btnEditarTabla.setColor(new java.awt.Color(62, 115, 248));
-        btnEditarTabla.setColorClick(new java.awt.Color(62, 115, 248));
-        btnEditarTabla.setColorOver(new java.awt.Color(103, 181, 255));
-        btnEditarTabla.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        btnEditarTabla.setRadius(20);
-        btnEditarTabla.addActionListener(new java.awt.event.ActionListener() {
+        btnExtraerTabla.setBackground(new java.awt.Color(62, 115, 248));
+        btnExtraerTabla.setBorder(null);
+        btnExtraerTabla.setForeground(new java.awt.Color(255, 255, 255));
+        btnExtraerTabla.setText("Extraer");
+        btnExtraerTabla.setBorderColor(new java.awt.Color(242, 242, 242));
+        btnExtraerTabla.setColor(new java.awt.Color(62, 115, 248));
+        btnExtraerTabla.setColorClick(new java.awt.Color(62, 115, 248));
+        btnExtraerTabla.setColorOver(new java.awt.Color(103, 181, 255));
+        btnExtraerTabla.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        btnExtraerTabla.setRadius(20);
+        btnExtraerTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarTablaActionPerformed(evt);
+                btnExtraerTablaActionPerformed(evt);
             }
         });
 
@@ -634,6 +634,11 @@ public class Principal extends javax.swing.JFrame {
         btnbuscar.setColorOver(new java.awt.Color(62, 96, 234));
         btnbuscar.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         btnbuscar.setRadius(20);
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
 
         refrescar.setBackground(new java.awt.Color(62, 115, 248));
         refrescar.setBorder(null);
@@ -654,7 +659,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExtraerTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlMenuVisualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMenuVisualizarDatosLayout.createSequentialGroup()
@@ -684,7 +689,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlMenuVisualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEditarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExtraerTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -904,19 +909,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btnConfig.setBackground(new java.awt.Color(62, 115, 248));
-        btnConfig.setBorder(null);
-        btnConfig.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfig.setText("Configuración");
-        btnConfig.setBorderColor(new java.awt.Color(242, 242, 242));
-        btnConfig.setColor(new java.awt.Color(62, 115, 248));
-        btnConfig.setColorClick(new java.awt.Color(62, 96, 234));
-        btnConfig.setColorOver(new java.awt.Color(103, 181, 255));
-        btnConfig.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnConfig.setRadius(15);
-        btnConfig.addActionListener(new java.awt.event.ActionListener() {
+        btnTheme.setBackground(new java.awt.Color(62, 115, 248));
+        btnTheme.setBorder(null);
+        btnTheme.setForeground(new java.awt.Color(255, 255, 255));
+        btnTheme.setText("Cambiar Tema");
+        btnTheme.setBorderColor(new java.awt.Color(242, 242, 242));
+        btnTheme.setColor(new java.awt.Color(62, 115, 248));
+        btnTheme.setColorClick(new java.awt.Color(62, 96, 234));
+        btnTheme.setColorOver(new java.awt.Color(103, 181, 255));
+        btnTheme.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        btnTheme.setRadius(15);
+        btnTheme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfigActionPerformed(evt);
+                btnThemeActionPerformed(evt);
             }
         });
 
@@ -980,7 +985,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btnGestionarUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                     .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCargarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         menuLayout.setVerticalGroup(
@@ -995,7 +1000,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGestionarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTheme, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -1035,10 +1040,8 @@ public class Principal extends javax.swing.JFrame {
         c.refrescarDatos();
     }//GEN-LAST:event_btnGestionarUsuariosActionPerformed
 
-    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-        titulo1.setText("Configuracion");
-        cardLayout.show(ventana, "pnlConfiguracion");
-    }//GEN-LAST:event_btnConfigActionPerformed
+    private void btnThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemeActionPerformed
+    }//GEN-LAST:event_btnThemeActionPerformed
 
 
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
@@ -1103,8 +1106,122 @@ public class Principal extends javax.swing.JFrame {
         cs.setVisible(true);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
-    private void btnEditarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTablaActionPerformed
-    }//GEN-LAST:event_btnEditarTablaActionPerformed
+    private void btnExtraerTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExtraerTablaActionPerformed
+    System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV...");
+
+    try {
+        // --- 1. Obtener el modelo de la tabla y el TableRowSorter para filas visibles ---
+        javax.swing.table.TableModel model = Tabla.getModel();
+        javax.swing.RowSorter<? extends javax.swing.table.TableModel> sorter = Tabla.getRowSorter();
+        
+        int rowCount = Tabla.getRowCount(); // Esto devuelve las filas VISIBLES después del filtro
+        int colCount = model.getColumnCount();
+
+        System.out.println("--> Filas VISIBLES a exportar: " + rowCount + ", Columnas: " + colCount);
+
+        if (rowCount == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "No hay datos visibles para exportar.\n" +
+                "Puede que el filtro aplicado no muestre resultados.",
+                "Sin Datos Visibles",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // --- 2. Preparar el contenido CSV ---
+        StringBuilder csvContent = new StringBuilder();
+
+        // --- 3. Agregar encabezados ---
+        for (int col = 0; col < colCount; col++) {
+            csvContent.append("\"").append(model.getColumnName(col).replace("\"", "\"\"")).append("\"");
+            if (col < colCount - 1) {
+                csvContent.append(",");
+            }
+        }
+        csvContent.append("\n");
+
+        // --- 4. Agregar solo las filas VISIBLES ---
+        for (int viewRowIndex = 0; viewRowIndex < rowCount; viewRowIndex++) {
+            // Convertir índice de vista a índice del modelo
+            int modelRowIndex;
+            if (sorter != null) {
+                modelRowIndex = sorter.convertRowIndexToModel(viewRowIndex);
+            } else {
+                modelRowIndex = viewRowIndex;
+            }
+            
+            for (int col = 0; col < colCount; col++) {
+                Object value = model.getValueAt(modelRowIndex, col);
+                if (value != null) {
+                    // Escapar comillas y agregar comillas alrededor del texto
+                    String cellValue = value.toString().replace("\"", "\"\"");
+                    csvContent.append("\"").append(cellValue).append("\"");
+                } else {
+                    csvContent.append("\"\"");
+                }
+                if (col < colCount - 1) {
+                    csvContent.append(",");
+                }
+            }
+            csvContent.append("\n");
+        }
+
+        // --- 5. Guardar el archivo ---
+        // Obtener nombre del archivo del JLabel txtIdPre
+        String nombreArchivo = lblNombre.getText().trim();
+        if (nombreArchivo.isEmpty()) {
+            nombreArchivo = "exportacion_tabla";
+        }
+        nombreArchivo = nombreArchivo.replaceAll("[^a-zA-Z0-9_\\-]", "_");
+        
+        // Agregar "_filtrado" al nombre para indicar que es una exportación filtrada
+        nombreArchivo += "_filtrado";
+        
+        String outputPath = "Exportaciones/" + nombreArchivo + ".csv";
+        java.io.File outputFile = new java.io.File(outputPath);
+        
+        // Crear directorio si no existe
+        java.io.File directory = outputFile.getParentFile();
+        if (directory != null && !directory.exists()) {
+            System.out.println("--> Creando directorio: " + directory.getAbsolutePath());
+            boolean dirCreated = directory.mkdirs();
+            if (!dirCreated) {
+                throw new java.io.IOException("No se pudo crear el directorio: " + directory.getAbsolutePath());
+            }
+        }
+
+        System.out.println("--> Guardando archivo CSV en: " + outputFile.getAbsolutePath());
+        
+        // Escribir el contenido al archivo
+        try (java.io.FileWriter writer = new java.io.FileWriter(outputFile)) {
+            writer.write(csvContent.toString());
+        }
+
+        System.out.println("--> ¡ÉXITO! Archivo CSV exportado correctamente.");
+
+        // --- 6. Mensaje de éxito ---
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "¡Datos FILTRADOS exportados exitosamente!\n" +
+            "Archivo: " + outputPath + "\n" +
+            "Filas exportadas: " + rowCount + "\n\n" +
+            "Nota: Se exportaron solo los datos visibles (filtrados).",
+            "Exportación Filtrada Exitosa",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (Exception ex) {
+        System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.err.println("!!! ERROR EN LA EXPORTACIÓN CSV !!!");
+        System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        ex.printStackTrace();
+
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Error al exportar a CSV: " + ex.getMessage() +
+            "\nRevisa la consola para más detalles.",
+            "Error de Exportación",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_btnExtraerTablaActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
     }//GEN-LAST:event_BtnEliminarActionPerformed
@@ -1213,8 +1330,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModoClaroActionPerformed
 
     private void btnModoOscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModoOscuroActionPerformed
-        ThemeManager.aplicarTemaOscuro(this);
+
     }//GEN-LAST:event_btnModoOscuroActionPerformed
+
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1226,14 +1347,14 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JTable TablaUser;
     public componentes.MyButton btnCargarDatos;
     public componentes.MyButton btnCerrarSesion;
-    public componentes.MyButton btnConfig;
-    public componentes.MyButton btnEditarTabla;
     public componentes.MyButton btnEliminarUsuario;
+    public componentes.MyButton btnExtraerTabla;
     public componentes.MyButton btnGestionarUsuarios;
     public componentes.MyButton btnInicio;
     private javax.swing.JButton btnModoClaro;
     private javax.swing.JButton btnModoOscuro;
     public componentes.MyButton btnRegistrarU;
+    public componentes.MyButton btnTheme;
     public componentes.MyButton btnVisualizar;
     public componentes.MyButton btnbuscar;
     public componentes.MyButton btnlimpiar;

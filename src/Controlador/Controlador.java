@@ -25,7 +25,7 @@ public class Controlador implements ActionListener {
 
     private void setDBButtonsEnabled(boolean enabled) {
         cd.btnCargarDatos.setEnabled(enabled);
-        cd.btnConfig.setEnabled(enabled);
+        cd.btnTheme.setEnabled(enabled);
         cd.btnVisualizar.setEnabled(enabled);
         cd.btnGestionarUsuarios.setEnabled(enabled);
         cd.btnInicio.setEnabled(enabled);
@@ -48,6 +48,7 @@ public class Controlador implements ActionListener {
         this.cd.BtnEliminar.addActionListener(this);
         this.cd.btnEliminarUsuario.addActionListener(this);
         this.cd.btnbuscar.addActionListener(this);
+        this.cd.btnTheme.addActionListener(this);
 
         this.cd.Tabla.addMouseListener(new MouseAdapter() {
             @Override
@@ -61,24 +62,40 @@ public class Controlador implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-
-        if (source == cd.guardar) {
-            agregarDatos();
-            refrescarDatos();
-        } else if (source == cd.refrescar) {
-            refrescarDatos();
-        } else if (source == cd.BtnEliminar) {
-            eliminarDatos();
-            refrescarDatos();
-        } else if (source == cd.btnEliminarUsuario) {
-            eliminarUsuario();
-            refrescarDatos();
-        } else if (source == cd.btnbuscar) {
-            buscar();
-        }
+public void actionPerformed(ActionEvent e) {
+    Object source = e.getSource();
+    
+    // --- Tus otros botones (se quedan igual) ---
+    if (source == cd.guardar) {
+        agregarDatos();
+    } else if (source == cd.refrescar) {
+        refrescarDatos();
+    } else if (source == cd.BtnEliminar) {
+        eliminarDatos();
+    } else if (source == cd.btnEliminarUsuario) {
+        eliminarUsuario();
+    } else if (source == cd.btnbuscar) {
+        buscar();
     }
+    
+    // --- ✅ LA LÓGICA (Lo que faltaba) ---
+    // Esto es lo que se ejecuta al presionar el botón de tema
+if (source == cd.btnTheme) {
+    
+    // 1. Obtenemos la Cédula (ID) del usuario
+    //    Cambiamos la línea roja por esta:
+    String ci = cd.getUsuarioCi(); // ✅ ¡Solucionado!
+    
+    // 2. Le decimos al 'SettingsManager' que escriba en el XML
+    Modelo.SettingsManager.toggleThemePreference(ci);
+    
+    // 3. Mostramos el mensaje de advertencia
+    JOptionPane.showMessageDialog(cd, 
+        "Los cambios se aplicarán en el próximo reinicio.", 
+        "ATENCIÓN", 
+        JOptionPane.WARNING_MESSAGE);
+}
+}
 
     /**
      * Inicia la carga en segundo plano de ambas tablas.
@@ -87,7 +104,6 @@ public class Controlador implements ActionListener {
         cargarTablaProyectos();
         setDBButtonsEnabled(false);
         cd.guardar.setEnabled(false);
-        //cargarTablaUsuarios();
     }
 
     // --- MÉTODOS CON SWINGWORKER PARA NO CONGELAR LA GUI ---
@@ -474,13 +490,12 @@ public class Controlador implements ActionListener {
                 user.getCi(),
                 user.getNombre(),
                 user.getLast_session(),
-                user.getNombre_tipo() // Nota: necesitarás un JOIN en tu udao.listarUser() para que esto funcione
+                user.getNombre_tipo()
             };
             userTableModel.addRow(fila);
         }
     }
 
-    // --- MÉTODOS DE LA GUI QUE NO NECESITAN SWINGWORKER (SON RÁPIDOS) ---
     public void buscar() {
         String filtroSeleccionado = cd.filtrar.getSelectedItem().toString();
         String buscarTexto = cd.txtBuscar.getText();
@@ -500,7 +515,6 @@ public class Controlador implements ActionListener {
     }
 
     private int getColumnaFiltro(String filtro) {
-        // La forma clásica del switch, compatible con Java 8
         switch (filtro) {
             case "ID":
                 return 0;
@@ -521,7 +535,7 @@ public class Controlador implements ActionListener {
             case "Fecha de presentacion":
                 return 8;
             default:
-                return -1; // Si no coincide con ninguno, devuelve -1
+                return -1; 
         }
     }
 

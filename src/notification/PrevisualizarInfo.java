@@ -81,16 +81,19 @@ public class PrevisualizarInfo extends javax.swing.JDialog {
         panelRound2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtFDPresentacionPre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtFDPresentacionPre.setForeground(new java.awt.Color(30, 30, 30));
         txtFDPresentacionPre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtFDPresentacionPre.setText("Presentarán el dia: ");
         panelRound2.add(txtFDPresentacionPre, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 0, 200, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(30, 30, 30));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("PreVisualizacion");
         panelRound2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(30, 30, 30));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Presentarán el dia:");
         panelRound2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, -1));
@@ -98,6 +101,7 @@ public class PrevisualizarInfo extends javax.swing.JDialog {
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 680, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Identificador:");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -155,36 +159,42 @@ public class PrevisualizarInfo extends javax.swing.JDialog {
         panelRound1.add(btnEnlace, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 120, 50));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(30, 30, 30));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Integrantes:");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 120, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(30, 30, 30));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("C.I Profesor/a");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelRound1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 120, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(30, 30, 30));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Sede:");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelRound1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 100, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(30, 30, 30));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Trayecto:");
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelRound1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 120, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(30, 30, 30));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Sección:");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelRound1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 120, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(30, 30, 30));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("PNF:");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -214,6 +224,7 @@ public class PrevisualizarInfo extends javax.swing.JDialog {
         panelRound1.add(btnCapture1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 120, 50));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(30, 30, 30));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Titulo:");
         jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -304,60 +315,81 @@ public class PrevisualizarInfo extends javax.swing.JDialog {
         this.proyectoUrl = url;
     }
     private void btnCapture1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapture1ActionPerformed
-        System.out.println("--> Botón presionado. Iniciando proceso de captura como PNG...");
+            System.out.println("--> Botón presionado. Iniciando proceso de captura como PNG...");
 
-        try {
-            // --- 1. Especifica el componente que quieres capturar ---
-            // Cambia "this" si quieres capturar otro componente (e.g., un JPanel específico).
-            java.awt.Component componentToCapture = this;
-            System.out.println("--> Objeto a capturar: " + componentToCapture.getClass().getName());
+    try {
+        // --- 1. Especifica el componente que quieres capturar ---
+        java.awt.Component componentToCapture = this;
+        System.out.println("--> Objeto a capturar: " + componentToCapture.getClass().getName());
 
-            // Crea una imagen en memoria del tamaño del componente
-            java.awt.image.BufferedImage image = new java.awt.image.BufferedImage(
-                    componentToCapture.getWidth(),
-                    componentToCapture.getHeight(),
-                    java.awt.image.BufferedImage.TYPE_INT_ARGB // Usamos ARGB para soportar transparencia si es necesario
-            );
+        // Crea una imagen en memoria del tamaño del componente
+        java.awt.image.BufferedImage image = new java.awt.image.BufferedImage(
+                componentToCapture.getWidth(),
+                componentToCapture.getHeight(),
+                java.awt.image.BufferedImage.TYPE_INT_ARGB
+        );
 
-            // Obtiene el contexto gráfico de la imagen y dibuja el componente en él
-            java.awt.Graphics2D g = image.createGraphics();
-            componentToCapture.paint(g);
-            g.dispose(); // Libera los recursos gráficos
-            System.out.println("--> La captura del componente se ha dibujado en la memoria.");
+        // Obtiene el contexto gráfico de la imagen y dibuja el componente en él
+        java.awt.Graphics2D g = image.createGraphics();
+        componentToCapture.paint(g);
+        g.dispose();
+        System.out.println("--> La captura del componente se ha dibujado en la memoria.");
 
-            // --- 2. Guarda la imagen en un archivo PNG ---
-            // Define la ruta y el nombre del archivo PNG de salida
-            String outputPath = "captura_de_pantalla.png";
-
-            // Creamos el archivo
-            java.io.File outputFile = new java.io.File(outputPath);
-
-            // Mostramos la ruta completa donde se guardará el archivo
-            System.out.println("--> Intentando guardar el PNG en la ruta: " + outputFile.getAbsolutePath());
-
-            // Escribe la imagen capturada en el archivo PNG
-            // "ImageIO.write" es parte de la API estándar de Java, no necesita librerías externas.
-            javax.imageio.ImageIO.write(image, "PNG", outputFile);
-
-            System.out.println("--> ¡ÉXITO! La imagen PNG se ha creado y guardado.");
-
-            // Muestra un mensaje de éxito
-            javax.swing.JOptionPane.showMessageDialog(this, "¡Captura guardada como " + outputPath + "!");
-
-        } catch (Exception ex) { // Capturamos cualquier excepción para mostrarla
-            System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.err.println("!!! OCURRIÓ UN ERROR QUE DETUVO EL PROCESO !!!");
-            System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-            ex.printStackTrace(); // Imprime el rastro completo del error en la consola
-
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Error al guardar la captura PNG: " + ex.getMessage()
-                    + "\nRevisa la consola de salida (Output) para más detalles.",
-                    "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
+        // --- 2. Obtener el texto del JLabel "txtIdPre" para el nombre del archivo ---
+        String nombreArchivo = txtIdPre.getText().trim();
+        
+        // Validar que el nombre no esté vacío
+        if (nombreArchivo.isEmpty()) {
+            nombreArchivo = "captura_sin_nombre";
+            System.out.println("--> El JLabel txtIdPre está vacío, usando nombre por defecto.");
         }
+        
+        // Limpiar el nombre de archivo de caracteres inválidos
+        nombreArchivo = nombreArchivo.replaceAll("[^a-zA-Z0-9_\\-]", "_");
+        
+        // --- 3. Define la ruta y crea el directorio si no existe ---
+        String outputPath = "Captura/" + nombreArchivo + ".png";
+        java.io.File outputFile = new java.io.File(outputPath);
+        
+        // Crear el directorio si no existe
+        java.io.File directory = outputFile.getParentFile();
+        if (directory != null && !directory.exists()) {
+            System.out.println("--> El directorio no existe. Creando directorio: " + directory.getAbsolutePath());
+            boolean dirCreated = directory.mkdirs();
+            if (dirCreated) {
+                System.out.println("--> Directorio creado exitosamente.");
+            } else {
+                System.err.println("--> No se pudo crear el directorio.");
+                throw new java.io.IOException("No se pudo crear el directorio: " + directory.getAbsolutePath());
+            }
+        }
+
+        // Mostrar la ruta completa donde se guardará el archivo
+        System.out.println("--> Intentando guardar el PNG en la ruta: " + outputFile.getAbsolutePath());
+
+        // --- 4. Guarda la imagen en el archivo PNG ---
+        javax.imageio.ImageIO.write(image, "PNG", outputFile);
+
+        System.out.println("--> ¡ÉXITO! La imagen PNG se ha creado y guardado.");
+
+        // Muestra un mensaje de éxito
+        javax.swing.JOptionPane.showMessageDialog(this, "¡Captura guardada como " + outputPath + "!");
+
+    } catch (Exception ex) {
+        System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.err.println("!!! OCURRIÓ UN ERROR QUE DETUVO EL PROCESO !!!");
+        System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+        ex.printStackTrace();
+
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Error al guardar la captura PNG: " + ex.getMessage()
+                + "\nRevisa la consola de salida (Output) para más detalles.",
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+    }
+        
 
     }//GEN-LAST:event_btnCapture1ActionPerformed
 

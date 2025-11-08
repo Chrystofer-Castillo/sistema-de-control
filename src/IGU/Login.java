@@ -258,12 +258,10 @@ public class Login extends javax.swing.JFrame {
 
                 Principal ventanaPrincipal = new Principal(mod);
 
-                SplashScreen pantallaCarga = new SplashScreen(null, false);
+                SplashScreen pantallaCarga = new SplashScreen(this, true, mod);
                 pantallaCarga.setVisible(true);
                 pantallaCarga.setLocationRelativeTo(this);
-                SplashScreen.MiCargadorDatos cargador
-                        = new SplashScreen.MiCargadorDatos(pantallaCarga, ventanaPrincipal);
-                cargador.execute();
+                
             } else {
 
                 anunciousuario.setText("Datos Incorrectos");

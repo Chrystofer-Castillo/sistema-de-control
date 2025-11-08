@@ -15,6 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
 import javax.swing.JFrame;
+import Modelo.SettingsManager;
+import Modelo.ThemeManager;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,46 +28,34 @@ public class SplashScreen extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SplashScreen.class.getName());
 
     private static final long TIEMPO_ESPERA_MS = 4000;
+    private final usuarios usuarioAutenticado;
 
-    public SplashScreen(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-
-        // *****************************************************************
-        // 2. Configuración esencial de la ventana Splash
-        // *****************************************************************
-        setUndecorated(true); // ¡Quita bordes y botones!
-        setLocationRelativeTo(null);
-        // Carga los componentes iniciales (el código generado por NetBeans)
-        initComponents();
-
-        // Inicia la lógica del GIF y Audio
-        iniciarSplash();
-    }
+public SplashScreen(java.awt.Frame parent, boolean modal, usuarios user) {
+    super(parent, modal);
+    this.usuarioAutenticado = user; // Guardamos el usuario
+    
+    setUndecorated(true); 
+    initComponents();
+    
+    // Aplicamos la transparencia
+    setBackground(new Color(0, 0, 0, 0));
+    ((JPanel) getContentPane()).setOpaque(false);
+    
+    setLocationRelativeTo(null);
+    iniciarSplash();
+}
 
     // *****************************************************************
     // 3. Método para configurar el GIF y el Audio
     // *****************************************************************
-    private void iniciarSplash() {
-        // Cargar el GIF animado (visual)
-        try {
-            // 1. Cargas la imagen (tu GIF)
-            ImageIcon gifIcon = new ImageIcon(getClass().getResource("/splashScreen/intro.gif"));
-
-            // 2. Creas el JLabel y le pasas el GIF
-            /* JLabel lblAnimacion = new JLabel(gifIcon); // <-- AQUÍ se crea y se llama
-
-        // 3. Reemplazas el contenido vacío del JDialog por el JLabel
-        this.getContentPane().removeAll();
-        this.getContentPane().add(lblAnimacion);
-             */
-            // ... (código para pack y centrar) ...
-        } catch (Exception e) {
-            // ... (manejo de error) ...
-        }
-
-        // Iniciar la reproducción del Audio WAV
-        ReproductorAudio.reproducir("/splashScreen/intro_audio.wav");
-    }
+private void iniciarSplash() {
+    // Tu código de GIF y audio no cambia
+    ReproductorAudio.reproducir("/splashScreen/intro_audio.wav");
+    
+    // Iniciamos el Cargador de Datos pasándole el usuario
+    MiCargadorDatos cargador = new MiCargadorDatos(this, this.usuarioAutenticado);
+    cargador.execute();
+}
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -94,64 +85,90 @@ public class SplashScreen extends javax.swing.JDialog {
     // *****************************************************************
     // 4. CLASE SWINGWORKER (Para la carga pesada en segundo plano)
     // *****************************************************************
-    public static class MiCargadorDatos extends SwingWorker<Void, Void> {
+public static class MiCargadorDatos extends SwingWorker<String, Void> { // Devuelve String
 
-        private final SplashScreen pantallaSplash;
-        private final JFrame ventanaPrincipal;
+    private final SplashScreen pantallaSplash;
+    private final usuarios usuarioFinal; // Acepta 'usuarios'
 
-        public MiCargadorDatos(SplashScreen splash, JFrame principal) {
-            this.pantallaSplash = splash;
-            this.ventanaPrincipal = principal;
-        }
-
-        @Override
-        protected Void doInBackground() throws Exception {
-
-            System.out.println("Iniciando la carga de datos de la BD...");
-            usuariosDAO modSql = new usuariosDAO();
-            usuarios mod = new usuarios();
-
-            Date date = new Date();
-            DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            mod.setLast_session(fechaHora.format(date));
-            try {
-                long tiempoInicio = System.currentTimeMillis();
-
-                // --- Aquí va tu código real de carga de datos ---
-                long tiempoFin = System.currentTimeMillis();
-                long tiempoTranscurrido = tiempoFin - tiempoInicio;
-
-                // Si la carga real es más rápida que el intro (7000ms), esperamos.
-                if (tiempoTranscurrido < TIEMPO_ESPERA_MS) {
-                    Thread.sleep(TIEMPO_ESPERA_MS - tiempoTranscurrido);
-                }
-
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-
-            System.out.println("Carga de datos completada.");
-            return null;
-        }
-
-        @Override
-        protected void done() {
-            // Cierra el Splash y abre la ventana principal
-            if (pantallaSplash != null) {
-                pantallaSplash.dispose();
-            }
-            System.out.println("Ventana principal abierta.");
-            Controlador c = new Controlador((Principal) ventanaPrincipal);
-            c.refrescarDatos();
-            ventanaPrincipal.setVisible(true);
-            ventanaPrincipal.setLocationRelativeTo(null);
-            ventanaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            
-            //ventanaPrincipal.setBackground(new Color(233, 236, 240));
-
-        }
+    // Constructor actualizado
+    public MiCargadorDatos(SplashScreen splash, usuarios user) {
+        this.pantallaSplash = splash;
+        this.usuarioFinal = user;
     }
+
+    @Override
+    protected String doInBackground() throws Exception {
+
+        System.out.println("Iniciando la carga de datos de la BD...");
+        
+        // --- INICIO DE LA LÓGICA DEL TEMA ---
+        String ci = (usuarioFinal != null) ? usuarioFinal.getCi() : null;
+        String themePreference = SettingsManager.getThemePreference(ci);
+        // --- FIN DE LA LÓGICA DEL TEMA ---
+
+        // ... (Tu código de 'setLast_session' y 'Thread.sleep' se queda igual) ...
+        usuariosDAO modSql = new usuariosDAO();
+        usuarios mod = new usuarios();
+        Date date = new Date();
+        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        mod.setLast_session(fechaHora.format(date));
+        
+        try {
+            long tiempoInicio = System.currentTimeMillis();
+            long tiempoFin = System.currentTimeMillis();
+            long tiempoTranscurrido = tiempoFin - tiempoInicio;
+
+            if (tiempoTranscurrido < TIEMPO_ESPERA_MS) {
+                Thread.sleep(TIEMPO_ESPERA_MS - tiempoTranscurrido);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        System.out.println("Carga de datos completada.");
+        return themePreference; // Devolvemos el tema
+    }
+
+    @Override
+    protected void done() {
+        String theme = "default";
+        try {
+            theme = get(); // Obtenemos el tema ("dark" o "default")
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // --- INICIO DE LA LÓGICA DEL TEMA ---
+        if ("dark".equals(theme)) {
+            System.out.println("Aplicando Tema Oscuro guardado...");
+            ThemeManager.aplicarTemaOscuro(null);
+        } else {
+            System.out.println("Aplicando Tema Original (predeterminado)...");
+            ThemeManager.aplicarTemaOriginal(null);
+        }
+        // --- FIN DE LA LÓGICA DEL TEMA ---
+
+        // Cierra el Splash
+        if (pantallaSplash != null) {
+            pantallaSplash.dispose();
+        }
+        
+        // CORRECCIÓN DE SEGURIDAD:
+        // Creamos 'Principal' pasándole el usuario que inició sesión
+        Principal ventanaPrincipal = new Principal(this.usuarioFinal);
+        
+        System.out.println("Ventana principal abierta.");
+        
+        // Atamos el Controlador a la ventana correcta
+        Controlador c = new Controlador(ventanaPrincipal);
+        c.refrescarDatos();
+        
+        // Mostramos la ventana
+        ventanaPrincipal.setVisible(true);
+        ventanaPrincipal.setLocationRelativeTo(null);
+        ventanaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+}
 
     // *****************************************************************
     // 5. CLASE ReproductorAudio (Manejo del sonido WAV)
