@@ -20,8 +20,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ingcastillo/Documentos/NetBeansProjects/sistema-de-control/src/notification/NotificacionFaltaInfo.java</file>
-            <file>file:/home/ingcastillo/Documentos/NetBeansProjects/sistema-de-control/src/Controlador/Controlador.java</file>
+            <file>file:/home/ingcastillo/Documentos/NetBeansProjects/sistema-de-control/src/notification/EditarDatos.java</file>
+            <file>file:/home/ingcastillo/Documentos/NetBeansProjects/sistema-de-control/src/notification/Csesion.java</file>
+            <file>file:/home/ingcastillo/Documentos/NetBeansProjects/sistema-de-control/src/componentes/PanelRound.java</file>
+            <file>file:/home/ingcastillo/Documentos/NetBeansProjects/sistema-de-control/src/IGU/Principal.java</file>
         </group>
     </open-files>
 </project-private>

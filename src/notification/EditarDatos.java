@@ -4,6 +4,7 @@ import Controlador.Controlador;
 import Modelo.Datos;
 import javax.swing.JOptionPane;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 public class EditarDatos extends javax.swing.JDialog {
 
@@ -14,7 +15,22 @@ public class EditarDatos extends javax.swing.JDialog {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
+        //----------------------------Seleccion de tema----------------------------
+        panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
         this.setBackground(new Color(0, 0, 0, 0));
+        titulo.setForeground(new Color(30, 30, 30));
+      ((JPanel) getContentPane()).setOpaque(false);
+        jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel4.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel5.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel6.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel7.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel8.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel9.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel10.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        
+
         this.datosOriginales = datos;
         this.controlador = controlador;
         cargarDatos(datos);
@@ -33,7 +49,7 @@ public class EditarDatos extends javax.swing.JDialog {
 
         panelRound1 = new componentes.round1();
         panelRound2 = new Clases.PanelRound();
-        jLabel1 = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnSalir = new componentes.MyButton();
         btnEditar = new componentes.MyButton();
@@ -71,10 +87,10 @@ public class EditarDatos extends javax.swing.JDialog {
         panelRound2.setRoundTopRight(20);
         panelRound2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Editar Datos");
-        panelRound2.add(jLabel1, new java.awt.GridBagConstraints());
+        titulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("Editar Datos");
+        panelRound2.add(titulo, new java.awt.GridBagConstraints());
 
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 680, -1));
 
@@ -298,7 +314,6 @@ public class EditarDatos extends javax.swing.JDialog {
     public javax.swing.JComboBox<String> SedeCombo;
     private componentes.MyButton btnEditar;
     private componentes.MyButton btnSalir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -317,5 +332,6 @@ public class EditarDatos extends javax.swing.JDialog {
     private javax.swing.JTextField textFieldTitulo;
     private javax.swing.JTextField textFieldTrayecto;
     private javax.swing.JTextField textFieldURL;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package notification;
 
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,7 +21,12 @@ public class Csesion extends javax.swing.JFrame {
     public Csesion() {
         initComponents();
         setLocationRelativeTo(null);
+          panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
+          jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+          jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
           this.setBackground(new Color(0, 0, 0, 0));
+          ((JPanel) getContentPane()).setOpaque(false);
+          getRootPane().putClientProperty("JRootPane.shadow", Boolean.FALSE);
     }
 
     /**

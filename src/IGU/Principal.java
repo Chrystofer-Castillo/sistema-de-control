@@ -5,7 +5,6 @@ import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import Controlador.Controlador;
-import Modelo.ThemeManager;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,6 +26,7 @@ public class Principal extends javax.swing.JFrame {
         FondoPanel fondo = new FondoPanel();
         this.setContentPane(new FondoPanel());
         initComponents();
+        //ocultarMenu.setBackground(javax.swing.UIManager.getColor("Button.background"));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         botones = new JButton[]{
@@ -165,7 +165,7 @@ public String getUsuarioCi() {
         hotbar.setRoundTopRight(25);
 
         lblNombre.setBackground(new java.awt.Color(204, 204, 204));
-        lblNombre.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre.setBorder(new javax.swing.border.MatteBorder(null));
         lblNombre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,7 +175,7 @@ public String getUsuarioCi() {
         });
 
         lblRol.setBackground(new java.awt.Color(204, 204, 204));
-        lblRol.setFont(new java.awt.Font("Araboto-Normal", 0, 18)); // NOI18N
+        lblRol.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblRol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRol.setBorder(new javax.swing.border.MatteBorder(null));
         lblRol.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,10 +191,9 @@ public String getUsuarioCi() {
         logo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         titulo1.setBackground(new java.awt.Color(0, 0, 0));
-        titulo1.setFont(new java.awt.Font("Segoe UI Black", 1, 30)); // NOI18N
+        titulo1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo1.setText("INICIO");
-        titulo1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         ocultarMenu.setBorder(null);
         ocultarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonHamburguesa.png"))); // NOI18N
@@ -218,11 +217,11 @@ public String getUsuarioCi() {
                 .addContainerGap()
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblRol, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblRol, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ocultarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -230,20 +229,15 @@ public String getUsuarioCi() {
         hotbarLayout.setVerticalGroup(
             hotbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hotbarLayout.createSequentialGroup()
-                .addGroup(hotbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(hotbarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(ocultarMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(hotbarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(hotbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titulo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(hotbarLayout.createSequentialGroup()
                         .addGroup(hotbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRol, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ocultarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );

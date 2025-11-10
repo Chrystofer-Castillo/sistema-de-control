@@ -16,11 +16,6 @@ public class SettingsManager {
 
     private static final String FILENAME = "settings.xml";
 
-    /**
-     * Busca la preferencia de tema.
-     * @param ci La cédula del usuario.
-     * @return "dark" si la preferencia está guardada, "default" en cualquier otro caso.
-     */
     public static String getThemePreference(String ci) {
         File xmlFile = new File(FILENAME);
         if (!xmlFile.exists() || ci == null || ci.isEmpty()) {
@@ -45,12 +40,6 @@ public class SettingsManager {
         return "default";
     }
 
-    /**
-     * ✅ LÓGICA DE INTERRUPTOR: AGREGAR/BORRAR
-     * Si el usuario tiene "dark", se lo quita.
-     * Si no lo tiene, se lo agrega.
-     * @param ci La cédula del usuario.
-     */
     public static void toggleThemePreference(String ci) {
         if (ci == null || ci.isEmpty()) return;
         
