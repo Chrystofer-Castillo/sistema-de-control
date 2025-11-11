@@ -69,11 +69,11 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="logo" min="-2" pref="170" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="titulo1" pref="218" max="32767" attributes="0"/>
+                  <Component id="titulo1" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNombre" pref="175" max="32767" attributes="0"/>
+                  <Component id="lblNombre" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="lblRol" pref="145" max="32767" attributes="0"/>
+                  <Component id="lblRol" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="ocultarMenu" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -457,6 +457,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="profesor">
                   <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="profesorActionPerformed"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="profesorKeyReleased"/>
                   </Events>
                   <AuxValues>
