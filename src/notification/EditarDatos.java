@@ -19,7 +19,7 @@ public class EditarDatos extends javax.swing.JDialog {
         panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
         this.setBackground(new Color(0, 0, 0, 0));
         titulo.setForeground(new Color(30, 30, 30));
-      ((JPanel) getContentPane()).setOpaque(false);
+        ((JPanel) getContentPane()).setOpaque(false);
         jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel4.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
@@ -307,6 +307,7 @@ public class EditarDatos extends javax.swing.JDialog {
         textFieldIntegrantes.setText(d.getTxtnom());
         textFieldURL.setText(d.getUrl());
         textFieldIdentificador.setEditable(false);
+        textFieldProfesor.setEditable(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

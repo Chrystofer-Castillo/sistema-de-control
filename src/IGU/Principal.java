@@ -29,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         //ocultarMenu.setBackground(javax.swing.UIManager.getColor("Button.background"));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
 
         botones = new JButton[]{
             btnInicio,
@@ -66,6 +67,7 @@ public class Principal extends javax.swing.JFrame {
         lblNombre.setText(mod.getNombre());
         lblRol.setText(mod.getNombre_tipo());
         lblNombre.setText(mod.getNombre());
+        profesor.setEditable(false);
 
         if (mod.getId_tipo() == 1) { // Administrador
 
@@ -218,11 +220,11 @@ public String getUsuarioCi() {
                 .addContainerGap()
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addComponent(titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblRol, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addComponent(lblRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ocultarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -289,6 +291,11 @@ public String getUsuarioCi() {
         prof.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         prof.setText("Profesor:");
 
+        profesor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profesorActionPerformed(evt);
+            }
+        });
         profesor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 profesorKeyReleased(evt);
@@ -1239,6 +1246,7 @@ nr.setVisible(true);
         txtnom.setText("");
         profesor.setText(mod.getCi());
         url.setText("");
+        profesor.setEditable(false);
     }//GEN-LAST:event_guardarActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
@@ -1334,6 +1342,10 @@ nr.setVisible(true);
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnbuscarActionPerformed
+
+    private void profesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profesorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profesorActionPerformed
 
     /**
      * @param args the command line arguments

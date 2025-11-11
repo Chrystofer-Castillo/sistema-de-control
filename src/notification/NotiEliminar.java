@@ -22,6 +22,11 @@ public class NotiEliminar extends javax.swing.JDialog {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         setLocationRelativeTo(null);
+        jLabel1.setForeground(new Color(30, 30, 30));
+        round11.setBackground(javax.swing.UIManager.getColor("Panel.background"));
+        jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        this.setBackground(new Color(0, 0, 0, 0));
     }
     private boolean continuePressed = false;
 
