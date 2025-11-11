@@ -1,9 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package notification;
 
+import IGU.Login;
+import IGU.Principal;
 import java.awt.Color;
 import javax.swing.JPanel;
 
@@ -11,22 +13,21 @@ import javax.swing.JPanel;
  *
  * @author Chrys
  */
-public class Csesion extends javax.swing.JFrame {
+public class NotiReiniciar extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Csesion.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotiReiniciar.class.getName());
+private Principal ventanaPrincipalReal;
 
-    /**
-     * Creates new form Csesion1
-     */
-    public Csesion() {
+    public NotiReiniciar(java.awt.Frame parent, boolean modal, Principal principal) {
+        super(parent, modal);
+        this.ventanaPrincipalReal = principal;
         initComponents();
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+        this.setBackground(new Color(0, 0, 0, 0));
         panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
         jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
-        this.setBackground(new Color(0, 0, 0, 0));
-        ((JPanel) getContentPane()).setOpaque(false);
-        getRootPane().putClientProperty("JRootPane.shadow", Boolean.FALSE);
+        jLabel4.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
     }
 
     /**
@@ -45,8 +46,9 @@ public class Csesion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnContinuar = new componentes.MyButton();
         btnCancelar = new componentes.MyButton();
+        jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         panelRound1.setBackground(new java.awt.Color(217, 216, 217));
@@ -75,13 +77,13 @@ public class Csesion extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿Desea Continuar?");
-        panelRound1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 370, 30));
+        panelRound1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 370, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(30, 30, 30));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Estas a punto de cerrar sesión");
-        panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, 30));
+        jLabel3.setText("Reiniciar.");
+        panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 370, 30));
 
         btnContinuar.setBackground(new java.awt.Color(254, 61, 61));
         btnContinuar.setBorder(null);
@@ -117,6 +119,12 @@ public class Csesion extends javax.swing.JFrame {
         });
         panelRound1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 120, 50));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Para guardar los cambios se requiere");
+        panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,14 +133,25 @@ public class Csesion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        System.exit(0);
+if (this.ventanaPrincipalReal != null) {
+        this.ventanaPrincipalReal.dispose();  
+    }
+    
+    // 2. Cierra esta ventana de notificación (el JDialog)
+    this.dispose(); 
+    
+    // 3. Crea y muestra la ventana de Login
+    Login l = new Login();
+    l.setVisible(true);
+    l.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -142,6 +161,27 @@ public class Csesion extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private componentes.MyButton btnCancelar;
@@ -149,7 +189,8 @@ public class Csesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public componentes.round1 panelRound1;
+    private javax.swing.JLabel jLabel4;
+    private componentes.round1 panelRound1;
     private Clases.PanelRound panelRound2;
     // End of variables declaration//GEN-END:variables
 }

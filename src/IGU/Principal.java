@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import notification.Csesion;
+import notification.NotiReiniciar;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -1035,6 +1036,9 @@ public String getUsuarioCi() {
     }//GEN-LAST:event_btnGestionarUsuariosActionPerformed
 
     private void btnThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemeActionPerformed
+NotiReiniciar nr = new NotiReiniciar(this, true, this);
+nr.setVisible(true);
+
     }//GEN-LAST:event_btnThemeActionPerformed
 
 
@@ -1066,7 +1070,7 @@ public String getUsuarioCi() {
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
-        cardLayout.show(ventana, "config");
+  
     }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
 
     private void lblRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRolMouseClicked
