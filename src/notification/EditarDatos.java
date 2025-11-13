@@ -19,7 +19,7 @@ public class EditarDatos extends javax.swing.JDialog {
         panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
         this.setBackground(new Color(0, 0, 0, 0));
         titulo.setForeground(new Color(30, 30, 30));
-      ((JPanel) getContentPane()).setOpaque(false);
+        ((JPanel) getContentPane()).setOpaque(false);
         jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel4.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
@@ -29,8 +29,14 @@ public class EditarDatos extends javax.swing.JDialog {
         jLabel8.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel9.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel10.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
-        
-
+        java.awt.event.ActionListener validationListener = new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                validarCampos();
+            }
+        };
+        PNFcombo.addActionListener(validationListener);
+        SedeCombo.addActionListener(validationListener);
         this.datosOriginales = datos;
         this.controlador = controlador;
         cargarDatos(datos);
@@ -228,8 +234,24 @@ public class EditarDatos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.datosActualizados = null;
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+    private void validarCampos() {
+        // 1. Obtenemos el valor seleccionado de cada ComboBox
+        // (Asumo que tus ComboBox se llaman 'PNFcombo' y 'SedeCombo')
+        String pnf = (String) PNFcombo.getSelectedItem();
+        String sede = (String) SedeCombo.getSelectedItem();
+
+        // 2. La lógica de validación
+        // Si PNF es "-" O Sede es "-", el botón se deshabilita.
+        if ("-".equals(pnf) || "-".equals(sede)) {
+            btnEditar.setEnabled(false);
+        } else {
+            // Si ambos tienen un valor válido, el botón se habilita.
+            btnEditar.setEnabled(true);
+        }
+    }
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if (textFieldTitulo.getText().trim().isEmpty() || PNFcombo.getSelectedItem().toString().trim().isEmpty()) {
@@ -239,8 +261,8 @@ public class EditarDatos extends javax.swing.JDialog {
         try {
             Datos d = new Datos();
             d.setId(Integer.parseInt(textFieldIdentificador.getText()));
-            d.setPnf(SedeCombo.getSelectedItem().toString());
-            d.setSede(PNFcombo.getSelectedItem().toString());
+            d.setPnf(PNFcombo.getSelectedItem().toString());
+            d.setSede(SedeCombo.getSelectedItem().toString());
             d.setTrayecto(textFieldTrayecto.getText());
             d.setSeccion(textFieldSeccion.getText());
             d.setProfesor(textFieldProfesor.getText());
@@ -296,6 +318,9 @@ public class EditarDatos extends javax.swing.JDialog {
 
     private void SedeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SedeComboActionPerformed
     }//GEN-LAST:event_SedeComboActionPerformed
+    
+    
+    
     private void cargarDatos(Datos d) {
         textFieldIdentificador.setText(String.valueOf(d.getId()));
         PNFcombo.setSelectedItem(d.getPnf());
