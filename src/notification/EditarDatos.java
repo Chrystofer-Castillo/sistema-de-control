@@ -332,6 +332,7 @@ public class EditarDatos extends javax.swing.JDialog {
         textFieldIntegrantes.setText(d.getTxtnom());
         textFieldURL.setText(d.getUrl());
         textFieldIdentificador.setEditable(false);
+        textFieldProfesor.setEditable(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

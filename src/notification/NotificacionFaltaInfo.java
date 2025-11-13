@@ -11,6 +11,12 @@ public class NotificacionFaltaInfo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
+        jLabel1.setForeground(new Color(30, 30, 30));
+        round11.setBackground(javax.swing.UIManager.getColor("Panel.background"));
+        msj1falta.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        msj2falta.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        this.setBackground(new Color(0, 0, 0, 0));
+        
         msj1falta.setText(msjfalta1);
         msj2falta.setText(msjfalta2);
         Timer timer = new Timer(4000, e -> {

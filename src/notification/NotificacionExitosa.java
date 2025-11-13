@@ -15,6 +15,12 @@ public class NotificacionExitosa extends javax.swing.JDialog {
         super(parent, modal);
         initComponents(); 
         setBackground(new Color(0,0,0,0));
+        jLabel1.setForeground(new Color(30, 30, 30));
+        round11.setBackground(javax.swing.UIManager.getColor("Panel.background"));
+        msj1exito.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        msj2exito.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        this.setBackground(new Color(0, 0, 0, 0));
+        
         msj1exito.setText(msjexito1);
         msj2exito.setText(msjexito2);
         Timer timer = new Timer(4000, e -> {

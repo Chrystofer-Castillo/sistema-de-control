@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * @author Chrys
  */
 public class Csesion extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Csesion.class.getName());
 
     /**
@@ -21,12 +21,12 @@ public class Csesion extends javax.swing.JFrame {
     public Csesion() {
         initComponents();
         setLocationRelativeTo(null);
-          panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
-          jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
-          jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
-          this.setBackground(new Color(0, 0, 0, 0));
-          ((JPanel) getContentPane()).setOpaque(false);
-          getRootPane().putClientProperty("JRootPane.shadow", Boolean.FALSE);
+        panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
+        jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        this.setBackground(new Color(0, 0, 0, 0));
+        ((JPanel) getContentPane()).setOpaque(false);
+        getRootPane().putClientProperty("JRootPane.shadow", Boolean.FALSE);
     }
 
     /**
@@ -48,7 +48,6 @@ public class Csesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(370, 230));
 
         panelRound1.setBackground(new java.awt.Color(217, 216, 217));
         panelRound1.setRoundBottomLeft(40);
@@ -144,14 +143,13 @@ public class Csesion extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private componentes.MyButton btnCancelar;
     private componentes.MyButton btnContinuar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private componentes.round1 panelRound1;
+    public componentes.round1 panelRound1;
     private Clases.PanelRound panelRound2;
     // End of variables declaration//GEN-END:variables
 }

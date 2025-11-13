@@ -4,31 +4,31 @@
  */
 package notification;
 
+import IGU.Login;
+import IGU.Principal;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Chrys
  */
-public class NotiEliminar extends javax.swing.JDialog {
+public class NotiReiniciar extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotiEliminar.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NotiReiniciar.class.getName());
+private Principal ventanaPrincipalReal;
 
-    /**
-     * Creates new form NotiEliminar
-     */
-    public NotiEliminar(java.awt.Frame parent, boolean modal) {
+    public NotiReiniciar(java.awt.Frame parent, boolean modal, Principal principal) {
         super(parent, modal);
+        this.ventanaPrincipalReal = principal;
         initComponents();
-        setBackground(new Color(0, 0, 0, 0));
-        setLocationRelativeTo(null);
-        jLabel1.setForeground(new Color(30, 30, 30));
-        round11.setBackground(javax.swing.UIManager.getColor("Panel.background"));
+        this.setLocationRelativeTo(null);
+        this.setBackground(new Color(0, 0, 0, 0));
+        panelRound1.setBackground(javax.swing.UIManager.getColor("Panel.background"));
         jLabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
         jLabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
-        this.setBackground(new Color(0, 0, 0, 0));
+        jLabel4.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
     }
-    private boolean continuePressed = false;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,8 +39,7 @@ public class NotiEliminar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelRound1 = new Clases.PanelRound();
-        round11 = new componentes.round1();
+        panelRound1 = new componentes.round1();
         panelRound2 = new Clases.PanelRound();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -49,23 +48,15 @@ public class NotiEliminar extends javax.swing.JDialog {
         btnCancelar = new componentes.MyButton();
         jLabel4 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+
         panelRound1.setBackground(new java.awt.Color(217, 216, 217));
         panelRound1.setRoundBottomLeft(40);
         panelRound1.setRoundBottomRight(40);
         panelRound1.setRoundTopLeft(40);
         panelRound1.setRoundTopRight(40);
         panelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(370, 230));
-
-        round11.setBackground(new java.awt.Color(217, 216, 217));
-        round11.setRoundBottomLeft(40);
-        round11.setRoundBottomRight(40);
-        round11.setRoundTopLeft(40);
-        round11.setRoundTopRight(40);
-        round11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelRound2.setBackground(new java.awt.Color(255, 150, 6));
         panelRound2.setRoundBottomLeft(20);
@@ -75,26 +66,29 @@ public class NotiEliminar extends javax.swing.JDialog {
         panelRound2.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ADVERTENCIA");
         panelRound2.add(jLabel1, new java.awt.GridBagConstraints());
 
-        round11.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 330, -1));
+        panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿Desea Continuar?");
-        round11.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 370, 30));
+        panelRound1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 370, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(30, 30, 30));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("este proceso no se puede deshacer.");
-        round11.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 370, 30));
+        jLabel3.setText("Reiniciar.");
+        panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 370, 30));
 
         btnContinuar.setBackground(new java.awt.Color(254, 61, 61));
         btnContinuar.setBorder(null);
         btnContinuar.setForeground(new java.awt.Color(255, 248, 248));
-        btnContinuar.setText("ELIMINAR");
+        btnContinuar.setText("CONTINUAR");
         btnContinuar.setBorderColor(new java.awt.Color(217, 216, 217));
         btnContinuar.setColor(new java.awt.Color(254, 61, 61));
         btnContinuar.setColorClick(new java.awt.Color(254, 50, 18));
@@ -106,7 +100,7 @@ public class NotiEliminar extends javax.swing.JDialog {
                 btnContinuarActionPerformed(evt);
             }
         });
-        round11.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 120, 50));
+        panelRound1.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 120, 50));
 
         btnCancelar.setBackground(new java.awt.Color(62, 115, 248));
         btnCancelar.setBorder(null);
@@ -123,48 +117,72 @@ public class NotiEliminar extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        round11.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 120, 50));
+        panelRound1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 120, 50));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(30, 30, 30));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Estas a punto de eliminar este elemento");
-        round11.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, 30));
+        jLabel4.setText("Para guardar los cambios se requiere");
+        panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 370, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(round11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(round11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        this.continuePressed = true;
-        this.dispose();
+if (this.ventanaPrincipalReal != null) {
+        this.ventanaPrincipalReal.dispose();  
+    }
+    
+    // 2. Cierra esta ventana de notificación (el JDialog)
+    this.dispose(); 
+    
+    // 3. Crea y muestra la ventana de Login
+    Login l = new Login();
+    l.setVisible(true);
+    l.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-    public boolean isContinuePressed() {
-        return continuePressed;
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+
     }
 
-    public int getOpcionElegida() {
-        this.continuePressed = true; // 1. Marcamos que sí se presionó
-        this.dispose();
-        return 0;
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private componentes.MyButton btnCancelar;
     private componentes.MyButton btnContinuar;
@@ -172,8 +190,7 @@ public class NotiEliminar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private Clases.PanelRound panelRound1;
+    private componentes.round1 panelRound1;
     private Clases.PanelRound panelRound2;
-    private componentes.round1 round11;
     // End of variables declaration//GEN-END:variables
 }
