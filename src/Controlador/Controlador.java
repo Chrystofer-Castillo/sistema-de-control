@@ -82,9 +82,18 @@ public void actionPerformed(ActionEvent e) {
     // Esto es lo que se ejecuta al presionar el botón de tema
 if (source == cd.btnTheme) {
     
+    // 1. Obtenemos la Cédula (ID) del usuario
+    //    Cambiamos la línea roja por esta:
     String ci = cd.getUsuarioCi(); // ✅ ¡Solucionado!
     
+    // 2. Le decimos al 'SettingsManager' que escriba en el XML
     Modelo.SettingsManager.toggleThemePreference(ci);
+    
+    // 3. Mostramos el mensaje de advertencia
+    JOptionPane.showMessageDialog(cd, 
+        "Los cambios se aplicarán en el próximo reinicio.", 
+        "ATENCIÓN", 
+        JOptionPane.WARNING_MESSAGE);
 }
 }
 

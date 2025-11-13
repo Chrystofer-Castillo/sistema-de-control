@@ -1112,120 +1112,207 @@ nr.setVisible(true);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnExtraerTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExtraerTablaActionPerformed
-    System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV...");
+System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV...");
 
     try {
         // --- 1. Obtener el modelo de la tabla y el TableRowSorter para filas visibles ---
+        // Asumimos que la JTable se llama 'Tabla'
         javax.swing.table.TableModel model = Tabla.getModel();
         javax.swing.RowSorter<? extends javax.swing.table.TableModel> sorter = Tabla.getRowSorter();
         
-        int rowCount = Tabla.getRowCount(); // Esto devuelve las filas VISIBLES después del filtro
+        // getRowCount() en una tabla con sorter devuelve el número de filas VISIBLES
+        int rowCount = Tabla.getRowCount(); 
         int colCount = model.getColumnCount();
 
         System.out.println("--> Filas VISIBLES a exportar: " + rowCount + ", Columnas: " + colCount);
 
+        // Si no hay filas (porque el filtro no arrojó resultados), informar y salir.
         if (rowCount == 0) {
             javax.swing.JOptionPane.showMessageDialog(this,
                 "No hay datos visibles para exportar.\n" +
                 "Puede que el filtro aplicado no muestre resultados.",
                 "Sin Datos Visibles",
                 javax.swing.JOptionPane.WARNING_MESSAGE);
-            return;
+            return; // Salir del método
         }
 
         // --- 2. Preparar el contenido CSV ---
         StringBuilder csvContent = new StringBuilder();
 
-        // --- 3. Agregar encabezados ---
+        // --- 3. Agregar encabezados (con punto y coma) ---
         for (int col = 0; col < colCount; col++) {
-            csvContent.append("\"").append(model.getColumnName(col).replace("\"", "\"\"")).append("\"");
+            // Limpiar comillas dobles en los nombres de encabezados
+            String headerName = model.getColumnName(col).replace("\"", "\"\"");
+            csvContent.append("\"").append(headerName).append("\"");
             if (col < colCount - 1) {
-                csvContent.append(",");
+                // USAR PUNTO Y COMA para compatibilidad con Excel en español
+                csvContent.append(";");
             }
         }
         csvContent.append("\n");
 
-        // --- 4. Agregar solo las filas VISIBLES ---
+        // --- 4. Agregar solo las filas VISIBLES (con punto y coma) ---
         for (int viewRowIndex = 0; viewRowIndex < rowCount; viewRowIndex++) {
-            // Convertir índice de vista a índice del modelo
+            // Convertir el índice de la fila visible (vista) al índice real del modelo
             int modelRowIndex;
             if (sorter != null) {
                 modelRowIndex = sorter.convertRowIndexToModel(viewRowIndex);
             } else {
-                modelRowIndex = viewRowIndex;
+                modelRowIndex = viewRowIndex; // No hay sorter, los índices son los mismos
             }
             
+            // Recorrer las columnas para esta fila
             for (int col = 0; col < colCount; col++) {
                 Object value = model.getValueAt(modelRowIndex, col);
+                
                 if (value != null) {
-                    // Escapar comillas y agregar comillas alrededor del texto
+                    // Escapar comillas dobles y agregar comillas alrededor del texto
                     String cellValue = value.toString().replace("\"", "\"\"");
                     csvContent.append("\"").append(cellValue).append("\"");
                 } else {
-                    csvContent.append("\"\"");
+                    csvContent.append("\"\""); // Celda vacía
                 }
+                
                 if (col < colCount - 1) {
-                    csvContent.append(",");
+                    // USAR PUNTO Y COMA
+                    csvContent.append(";");
                 }
             }
-            csvContent.append("\n");
+            csvContent.append("\n"); // Fin de la fila
         }
 
-        // --- 5. Guardar el archivo ---
-        // Obtener nombre del archivo del JLabel txtIdPre
-        String nombreArchivo = lblNombre.getText().trim();
-        if (nombreArchivo.isEmpty()) {
-            nombreArchivo = "exportacion_tabla";
+        // --- 5. LÓGICA DE NOMBRE DE ARCHIVO Y MANEJO DE DUPLICADOS ---
+        
+        // 5.1. Construir el nombre base
+        // Asumimos que los componentes se llaman:
+        // lblNombre (JLabel)
+        // filtrar (JComboBox)
+        // txtBuscar (JTextField)
+        String nombreBase = lblNombre.getText().trim();
+        String categoria = filtrar.getSelectedItem().toString().trim();
+        String busqueda = txtBuscar.getText().trim();
+        String extension = ".csv";
+        String directorio = "Exportaciones"; // Nombre de la carpeta
+
+        // Usar valores por defecto si los campos están vacíos
+        if (nombreBase.isEmpty()) nombreBase = "Exportacion";
+        // Ajusta "SELECCIONE" al item default de tu JComboBox si es diferente
+        if (categoria.isEmpty() || categoria.equalsIgnoreCase("SELECCIONE")) {
+            categoria = "Todos";
         }
-        nombreArchivo = nombreArchivo.replaceAll("[^a-zA-Z0-9_\\-]", "_");
+        if (busqueda.isEmpty()) busqueda = "SinFiltro";
+
+        // Formato: Manuel - Categoria - Busqueda.csv
+        String nombreArchivoBase = nombreBase + " - " + categoria + " - " + busqueda;
         
-        // Agregar "_filtrado" al nombre para indicar que es una exportación filtrada
-        nombreArchivo += "_filtrado";
+        // 5.2. Limpiar/Sanear el nombre de caracteres ilegales
+        // Windows no permite: \ / : * ? " < > |
+        String nombreLimpio = nombreArchivoBase.replaceAll("[\\\\/:*?\"<>|]", "_");
         
-        String outputPath = "Exportaciones/" + nombreArchivo + ".csv";
+        // 5.3. Definir la ruta y el archivo inicial
+        // java.io.File.separator es la forma correcta de poner / o \ según el SO
+        String outputPath = directorio + java.io.File.separator + nombreLimpio + extension;
         java.io.File outputFile = new java.io.File(outputPath);
+
+        // 5.4. Comprobar si el archivo existe y preguntar al usuario
+        if (outputFile.exists()) {
+            System.out.println("--> Conflicto: El archivo ya existe en: " + outputFile.getAbsolutePath());
+            
+            Object[] options = {"Reemplazar", "Duplicar", "Cancelar"};
+            String mensaje = "El archivo '" + outputFile.getName() + "' ya existe.\n" +
+                           "¿Qué desea hacer?";
+            
+            // Mostrar el diálogo de opciones
+            int decision = javax.swing.JOptionPane.showOptionDialog(
+                this, // 'this' asume que estás dentro de un JFrame o JPanel
+                mensaje, 
+                "Archivo Duplicado",
+                javax.swing.JOptionPane.YES_NO_CANCEL_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE,
+                null, 
+                options, 
+                options[1]); // Opción por defecto: "Duplicar"
+
+            if (decision == javax.swing.JOptionPane.YES_OPTION) { // 0 - Reemplazar
+                System.out.println("--> Decisión: Reemplazar archivo.");
+                // No hacemos nada, 'outputFile' ya apunta al archivo correcto para sobrescribir.
+            
+            } else if (decision == javax.swing.JOptionPane.NO_OPTION) { // 1 - Duplicar
+                System.out.println("--> Decisión: Duplicar archivo. Buscando nombre...");
+                int duplicado = 1;
+                String nuevoNombre;
+                
+                // Bucle para encontrar un nombre_X.csv que no exista
+                do {
+                    nuevoNombre = nombreLimpio + "_" + duplicado + extension;
+                    outputPath = directorio + java.io.File.separator + nuevoNombre;
+                    outputFile = new java.io.File(outputPath);
+                    duplicado++;
+                } while (outputFile.exists());
+                
+                System.out.println("--> Nuevo nombre de archivo: " + outputFile.getName());
+
+            } else { // 2 - Cancelar o Cerrar el diálogo
+                System.out.println("--> Exportación cancelada por el usuario.");
+                return; // Salir del método
+            }
+        }
         
-        // Crear directorio si no existe
+        // --- 6. Guardar el archivo ---
+        
+        // Crear directorio "Exportaciones" si no existe
         java.io.File directory = outputFile.getParentFile();
         if (directory != null && !directory.exists()) {
             System.out.println("--> Creando directorio: " + directory.getAbsolutePath());
             boolean dirCreated = directory.mkdirs();
             if (!dirCreated) {
+                // Lanzar un error si no se puede crear
                 throw new java.io.IOException("No se pudo crear el directorio: " + directory.getAbsolutePath());
             }
         }
 
         System.out.println("--> Guardando archivo CSV en: " + outputFile.getAbsolutePath());
         
-        // Escribir el contenido al archivo
-        try (java.io.FileWriter writer = new java.io.FileWriter(outputFile)) {
+        // Escribir el contenido al archivo (con UTF-8 BOM para tildes)
+        // Usamos un Writer con OutputStreamWriter para forzar la codificación
+        try (java.io.Writer writer = new java.io.BufferedWriter(
+                 new java.io.OutputStreamWriter(
+                     new java.io.FileOutputStream(outputFile), // 'outputFile' es el destino final
+                     java.nio.charset.StandardCharsets.UTF_8))) {
+            
+            // El \uFEFF (BOM - Byte Order Mark) es crucial 
+            // para que Excel reconozca UTF-8 (tildes, eñes)
+            writer.write("\uFEFF");
             writer.write(csvContent.toString());
         }
 
         System.out.println("--> ¡ÉXITO! Archivo CSV exportado correctamente.");
 
-        // --- 6. Mensaje de éxito ---
+        // --- 7. Mensaje de éxito ---
         javax.swing.JOptionPane.showMessageDialog(this,
             "¡Datos FILTRADOS exportados exitosamente!\n" +
-            "Archivo: " + outputPath + "\n" +
+            "Archivo: " + outputFile.getAbsolutePath() + "\n" + // Usamos la ruta final
             "Filas exportadas: " + rowCount + "\n\n" +
             "Nota: Se exportaron solo los datos visibles (filtrados).",
             "Exportación Filtrada Exitosa",
             javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
     } catch (Exception ex) {
+        // --- Manejo de Errores ---
         System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.err.println("!!! ERROR EN LA EXPORTACIÓN CSV !!!");
         System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        // Imprimir el stack trace para depuración
         ex.printStackTrace();
 
+        // Mostrar un mensaje de error amigable al usuario
         javax.swing.JOptionPane.showMessageDialog(this,
             "Error al exportar a CSV: " + ex.getMessage() +
             "\nRevisa la consola para más detalles.",
             "Error de Exportación",
             javax.swing.JOptionPane.ERROR_MESSAGE);
     }
-
+      
     }//GEN-LAST:event_btnExtraerTablaActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
