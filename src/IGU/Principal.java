@@ -21,7 +21,8 @@ public class Principal extends javax.swing.JFrame {
     usuarios mod;
 
     CardLayout cardLayout;
-
+    
+ 
     public Principal() {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
         FondoPanel fondo = new FondoPanel();
@@ -29,6 +30,8 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         //ocultarMenu.setBackground(javax.swing.UIManager.getColor("Button.background"));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        
         
 
         botones = new JButton[]{
@@ -55,7 +58,8 @@ public class Principal extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
         this.setContentPane(new FondoPanel());
 
-        initComponents();              //initcomponent
+        initComponents();
+        cargarFraseDelProcer();//initcomponent
         setLocationRelativeTo(null);
 //        this.c = new Controlador(this);
         this.mod = mod;
@@ -105,6 +109,10 @@ public String getUsuarioCi() {
         ocultarMenu = new componentes.MyButton();
         ventana = new componentes.round1();
         inicio = new javax.swing.JPanel();
+        lblFrases = new javax.swing.JLabel();
+        lblProcer = new javax.swing.JLabel();
+        lblaño = new javax.swing.JLabel();
+        lblImagenProcer = new javax.swing.JLabel();
         pnlCargarDatos = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         tra = new javax.swing.JLabel();
@@ -253,16 +261,55 @@ public String getUsuarioCi() {
 
         inicio.setFocusable(false);
         inicio.setOpaque(false);
+        inicio.addHierarchyListener(new java.awt.event.HierarchyListener() {
+            public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
+                inicioHierarchyChanged(evt);
+            }
+        });
+
+        lblFrases.setBackground(new java.awt.Color(255, 255, 255));
+        lblFrases.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblFrases.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblProcer.setBackground(new java.awt.Color(255, 255, 255));
+        lblProcer.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblProcer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblaño.setBackground(new java.awt.Color(255, 255, 255));
+        lblaño.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblaño.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblImagenProcer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagenProcer.setPreferredSize(new java.awt.Dimension(580, 450));
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFrases, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(lblProcer, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(lblaño, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblImagenProcer, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGroup(inicioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblImagenProcer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblProcer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFrases, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblaño, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9))
         );
 
         ventana.add(inicio, "inicio");
@@ -530,7 +577,7 @@ public String getUsuarioCi() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlCargarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnlimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -540,7 +587,7 @@ public String getUsuarioCi() {
                 .addGroup(pnlCargarDatosLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(474, Short.MAX_VALUE)))
+                    .addContainerGap(485, Short.MAX_VALUE)))
         );
 
         ventana.add(pnlCargarDatos, "pnlCargarDatos");
@@ -856,7 +903,7 @@ public String getUsuarioCi() {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModoClaro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModoOscuro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addContainerGap(517, Short.MAX_VALUE))
         );
         pnlConfiguracionLayout.setVerticalGroup(
             pnlConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -867,7 +914,7 @@ public String getUsuarioCi() {
                 .addComponent(btnModoClaro)
                 .addGap(18, 18, 18)
                 .addComponent(btnModoOscuro)
-                .addContainerGap(438, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
         ventana.add(pnlConfiguracion, "pnlConfiguracion");
@@ -1434,9 +1481,10 @@ System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV.
         // TODO add your handling code here:
     }//GEN-LAST:event_profesorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void inicioHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_inicioHierarchyChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inicioHierarchyChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public componentes.MyButton BtnEliminar;
@@ -1470,8 +1518,12 @@ System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV.
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    public javax.swing.JLabel lblFrases;
+    private javax.swing.JLabel lblImagenProcer;
     private javax.swing.JLabel lblNombre;
+    public javax.swing.JLabel lblProcer;
     private javax.swing.JLabel lblRol;
+    public javax.swing.JLabel lblaño;
     public javax.swing.JLabel logo;
     public componentes.round1 menu;
     private componentes.MyButton ocultarMenu;
@@ -1501,25 +1553,129 @@ System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV.
     private componentes.round1 ventana;
     // End of variables declaration//GEN-END:variables
 
-    private static class setId_tipo {
+// Esta es tu clase interna
+    private static class setId_tipo { 
+        public setId_tipo() { 
+        }
+    } // <-- Cierre de setId_tipo (tu línea 1559)
 
-        public setId_tipo() {
+    // Esta es tu otra clase interna
+    class FondoPanel extends JPanel { 
+        private Image imagen;
+
+        @Override
+        public void paint(Graphics g) { 
+            imagen = new ImageIcon(getClass().getResource("/imagenes/uno.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
         }
     }
-}
+// <-- Cierre de FondoPanel (tu línea 1571)
+// Método para cargar una frase aleatoria
+    // Método MEJORADO para cargar frase, autor, año E IMAGEN
+    private void cargarFraseDelProcer() {
+        
+        // 1. Organizamos los datos en "columnas" (Arrays)
+        // IMPORTANTE: El orden debe coincidir. El item 0 de frases
+        // debe ser del item 0 de autores, con el año 0 y la imagen 0.
+        
+        String[] frases = {
+            "\"Moral y luces son nuestras primeras necesidades.\"",
+            "\"O inventamos o erramos.\"",
+            "\"No podemos optar entre vencer o morir. ¡Necesario es vencer!\"",
+            "\"He arado en el mar y he sembrado en el viento.\"",
+            "\"¡Morir o ser libres!\"",
+            "\"Para nosotros la patria es América.\""
+            // ... (agrega las demás frases sin el autor)
+        };
+        
+        String[] autores = {
+            "Simón Bolívar",
+            "Simón Rodríguez",
+            "José Félix Ribas",
+            "Simón Bolívar",
+            "Francisco de Miranda",
+            "Simón Bolívar"
+            // ... (agrega los demás autores)
+        };
+        
+        String[] anios = {
+            "1819",
+            "1828",
+            "1814",
+            "1830",
+            "c. 1810",
+            "1815"
+            // ... (agrega los demás años)
+        };
+        
+        String[] rutasImagenes = {
+            "/imagenes/Simon Bolivar.jpg", 
+            "/imagenes/Simon Rodriguez.jpg",
+            "/imagenes/Rafael María Baralt.jpg", // Asegúrate que el nombre coincida
+            "/imagenes/Simon Bolivar.jpg", 
+            "/imagenes/Francisco de Miranda.jpeg",
+            "/imagenes/Simon Bolivar.jpg"
 
-class FondoPanel extends JPanel {
+             
+            // ... (agrega las rutas de las demás imágenes)
+        };
 
-    private Image imagen;
+        try {
+            // 2. Elegimos UN solo número al azar
+            int i = new java.util.Random().nextInt(frases.length);
+            
+            // 3. Ponemos los textos en los Labels (usando el índice 'i')
+            lblFrases.setText(frases[i]); 
+            lblProcer.setText(autores[i]);
+            lblaño.setText(anios[i]);
 
-    @Override
-    public void paint(Graphics g) {
-        imagen = new ImageIcon(getClass().getResource("/imagenes/uno.jpg")).getImage();
+            // 4. ESTA ES LA PARTE NUEVA: Cargar la imagen
+            String rutaSeleccionada = rutasImagenes[i];
+            java.net.URL imgUrl = getClass().getResource(rutaSeleccionada);
+            
+            if (imgUrl != null) {
+                // --- INICIA EL NUEVO CÓDIGO DE ESCALADO ---
+                
+                // 1. Cargamos la imagen original
+                javax.swing.ImageIcon iconoOriginal = new javax.swing.ImageIcon(imgUrl);
 
-        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+                // 2. Obtenemos el tamaño PREFERIDO del JLabel (580x450)
+                java.awt.Dimension tamanoLabel = lblImagenProcer.getPreferredSize();
+                int labelAncho = tamanoLabel.width;
+                int labelAlto = tamanoLabel.height;
 
-        setOpaque(false);
-
-        super.paint(g);
+                // 3. Validamos que el label TENGA un tamaño preferido
+                if (labelAncho > 0 && labelAlto > 0) {
+                    
+                    // 4. Creamos una NUEVA imagen escalada a ese tamaño (580x450)
+                    // (Usamos SCALE_SMOOTH para que se vea bonita al estirarse)
+                    java.awt.Image imgEscalada = iconoOriginal.getImage().getScaledInstance(labelAncho, labelAlto, java.awt.Image.SCALE_SMOOTH);
+                    
+                    // 5. Creamos un NUEVO icono con la imagen ya escalada
+                    javax.swing.ImageIcon iconoEscalado = new javax.swing.ImageIcon(imgEscalada);
+                    
+                    // 6. ...y AHORA SÍ la ponemos en el Label
+                    lblImagenProcer.setIcon(iconoEscalado);
+                    
+                } else {
+                    // Si el label no tiene tamaño (width=0), solo ponemos la original
+                    System.err.println("Advertencia: lblImagenProcer no tiene un 'PreferredSize' definido en el Design. La imagen no se escalará.");
+                    lblImagenProcer.setIcon(iconoOriginal);
+                }
+                // --- FIN DEL NUEVO CÓDIGO DE ESCALADO ---
+                
+            } else {
+                // Si no se encuentra la imagen, mostramos un error en la consola
+                System.err.println("Error: No se encontró la imagen en: " + rutaSeleccionada);
+                lblImagenProcer.setIcon(null); // Limpiamos la imagen si no la hay
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Error al cargar datos del prócer: " + e.getMessage());
+            lblFrases.setText("Error al cargar la frase."); 
+        }
     }
+    
 }
