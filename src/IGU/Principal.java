@@ -109,10 +109,12 @@ public String getUsuarioCi() {
         ocultarMenu = new componentes.MyButton();
         ventana = new componentes.round1();
         inicio = new javax.swing.JPanel();
-        lblFrases = new javax.swing.JLabel();
-        lblProcer = new javax.swing.JLabel();
-        lblaño = new javax.swing.JLabel();
         lblImagenProcer = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblaño = new javax.swing.JLabel();
+        lblFrases2 = new javax.swing.JLabel();
+        lblProcer = new javax.swing.JLabel();
+        lblFrases1 = new javax.swing.JLabel();
         pnlCargarDatos = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         tra = new javax.swing.JLabel();
@@ -267,49 +269,78 @@ public String getUsuarioCi() {
             }
         });
 
-        lblFrases.setBackground(new java.awt.Color(255, 255, 255));
-        lblFrases.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblFrases.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        lblProcer.setBackground(new java.awt.Color(255, 255, 255));
-        lblProcer.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblProcer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        lblaño.setBackground(new java.awt.Color(255, 255, 255));
-        lblaño.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblaño.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
         lblImagenProcer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenProcer.setPreferredSize(new java.awt.Dimension(580, 450));
+
+        lblaño.setBackground(new java.awt.Color(255, 255, 255));
+        lblaño.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        lblaño.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblaño.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lblFrases2.setBackground(new java.awt.Color(255, 255, 255));
+        lblFrases2.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        lblFrases2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrases2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lblProcer.setBackground(new java.awt.Color(255, 255, 255));
+        lblProcer.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        lblProcer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblProcer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lblFrases1.setBackground(new java.awt.Color(255, 255, 255));
+        lblFrases1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        lblFrases1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrases1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblFrases1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                    .addComponent(lblFrases2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblaño, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProcer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblProcer, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(lblFrases1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblaño, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFrases2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
+        );
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblFrases, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(lblProcer, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(lblaño, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(inicioLayout.createSequentialGroup()
+                .addGap(0, 33, Short.MAX_VALUE)
                 .addComponent(lblImagenProcer, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+            .addGroup(inicioLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inicioLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblImagenProcer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblProcer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFrases, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblaño, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9))
+                .addComponent(lblImagenProcer, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         ventana.add(inicio, "inicio");
@@ -1513,12 +1544,14 @@ System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV.
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    public javax.swing.JLabel lblFrases;
+    public javax.swing.JLabel lblFrases1;
+    public javax.swing.JLabel lblFrases2;
     private javax.swing.JLabel lblImagenProcer;
     private javax.swing.JLabel lblNombre;
     public javax.swing.JLabel lblProcer;
@@ -1580,54 +1613,88 @@ System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV.
         // IMPORTANTE: El orden debe coincidir. El item 0 de frases
         // debe ser del item 0 de autores, con el año 0 y la imagen 0.
         
-        String[] frases = {
-            "\"Moral y luces son nuestras primeras necesidades.\"",
-            "\"O inventamos o erramos.\"",
-            "\"No podemos optar entre vencer o morir. ¡Necesario es vencer!\"",
-            "\"He arado en el mar y he sembrado en el viento.\"",
-            "\"¡Morir o ser libres!\"",
-            "\"Para nosotros la patria es América.\""
-            // ... (agrega las demás frases sin el autor)
+        String[] frases1 = {
+            
+        /*1*/    "\"Moral y luces son nuestras",
+        /*2*/    "\"No podemos optar entre vencer o morir.",
+        /*3*/    "\"O inventamos",
+        /*4*/    "\"He arado en el mar y",
+        /*5*/    "\"¡Morir o\"",
+        /*6*/    "\"Un ser sin estudios,",
+        /*7*/    "\"Una cualidad que distingue al hombre",
+        /*8*/    "\"Si la naturaleza se opone, lucharemos",
+        /*9*/    "\"Los hijos de la patria, aunque sin voz,",
+        /*10*/    "\"Solamente con la unidad y la voluntad"
+      
+        };
+        
+        String[] frases2 = {
+            
+        /*1*/    "primeras necesidades.\"",
+        /*2*/    "¡Necesario es vencer!\"",
+        /*3*/    "o erramos.\"",
+        /*4*/    "he sembrado en el viento.\"",
+        /*5*/    "ser libres!\"",
+        /*6*/    "es un ser incompleto.\"",
+        /*7*/    "libre del esclavo es la opinión.\"",
+        /*8*/    "contra ella, y haremos que nos obedezca.\"",
+        /*9*/    "serán los herederos de la gloria. \"",
+        /*10*/   "de los pueblos será posible vencer.\""  
+                
         };
         
         String[] autores = {
-            "Simón Bolívar",
-            "Simón Rodríguez",
-            "José Félix Ribas",
-            "Simón Bolívar",
-            "Francisco de Miranda",
-            "Simón Bolívar"
+            
+        /*1*/    "Simón Bolívar.",
+        /*2*/    "José Félix Ribas.",
+        /*3*/    "Simón Rodríguez.",
+        /*4*/    "Simón Bolívar.",
+        /*5*/    "Francisco de Miranda.",
+        /*6*/    "Simón Bolívar.",
+        /*7*/    "Francisco de Miranda.",
+        /*8*/    "Simón Bolívar.",
+        /*9*/    "Rafael Maria Baralt",
+        /*10*/   "Antonio José de Sucre."  
             // ... (agrega los demás autores)
         };
         
         String[] anios = {
-            "1819",
-            "1828",
-            "1814",
-            "1830",
-            "c. 1810",
-            "1815"
-            // ... (agrega los demás años)
+ 
+        /*1*/    "1819",
+        /*2*/    "1814",
+        /*3*/    "c. 1828",
+        /*4*/    "1830",
+        /*5*/    "c. 1806-1812",
+        /*6*/    "c. 1825",
+        /*7*/    "c. 1811",
+        /*8*/    "1813",
+        /*9*/    "1841",
+        /*10*/   "c. 1823"      
+
         };
         
         String[] rutasImagenes = {
-            "/imagenes/Simon Bolivar.jpg", 
-            "/imagenes/Simon Rodriguez.jpg",
-            "/imagenes/Rafael María Baralt.jpg", // Asegúrate que el nombre coincida
-            "/imagenes/Simon Bolivar.jpg", 
-            "/imagenes/Francisco de Miranda.jpeg",
-            "/imagenes/Simon Bolivar.jpg"
+            
+        /*1*/    "/imagenes/Simon_B1.jpg",//*
+        /*2*/    "/imagenes/Felix_ribas.jpg",
+        /*3*/    "/imagenes/Simon_R.jpg",//*
+        /*4*/    "/imagenes/Simon_B1.jpg",
+        /*5*/    "/imagenes/Francisco_M.jpeg",//*
+        /*6*/    "/imagenes/Simon_B2.jpg",//*
+        /*7*/    "/imagenes/Francisco_M.jpeg",//*
+        /*8*/    "/imagenes/Simon_B2.jpg",
+        /*9*/    "/imagenes/Rafael_MB.jpg",//*
+        /*10*/   "/imagenes/Antonio_JS.jpg"//*
 
-             
-            // ... (agrega las rutas de las demás imágenes)
         };
 
         try {
             // 2. Elegimos UN solo número al azar
-            int i = new java.util.Random().nextInt(frases.length);
+            int i = new java.util.Random().nextInt(frases1.length);
             
             // 3. Ponemos los textos en los Labels (usando el índice 'i')
-            lblFrases.setText(frases[i]); 
+            lblFrases1.setText(frases1[i]);
+            lblFrases2.setText(frases2[i]);
             lblProcer.setText(autores[i]);
             lblaño.setText(anios[i]);
 
@@ -1674,7 +1741,7 @@ System.out.println("--> Botón Extraer presionado. Iniciando exportación a CSV.
             
         } catch (Exception e) {
             System.err.println("Error al cargar datos del prócer: " + e.getMessage());
-            lblFrases.setText("Error al cargar la frase."); 
+            lblFrases1.setText("Error al cargar la frase."); 
         }
     }
     
