@@ -21,10 +21,11 @@ public class usuariosDAO extends Conexion {
      * @param usr El objeto 'usuarios' con la información a insertar.
      * @return true si el registro fue exitoso, false en caso contrario.
      */
-    public boolean registrar(usuarios usr) {
-        String sql = "INSERT INTO usuarios (ci, nombre, password, id_tipo) VALUES (?, ?, ?, ?)";
+public boolean registrar(usuarios usr) {
+        // ✅ CAMBIO 1: Agregamos 'last_session' a la consulta
+        // ✅ CAMBIO 2: Usamos 'NOW()' para que MySQL inserte la fecha/hora actual automáticamente
+        String sql = "INSERT INTO usuarios (ci, nombre, password, id_tipo, last_session) VALUES (?, ?, ?, ?, NOW())";
 
-        // 1. Usamos try-with-resources para garantizar que la conexión se cierre siempre.
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -32,9 +33,12 @@ public class usuariosDAO extends Conexion {
             ps.setString(2, usr.getNombre());
             ps.setString(3, usr.getPassword());
             ps.setInt(4, usr.getId_tipo());
+            
+            // Nota: No necesitamos hacer ps.setString para el 5to valor 
+            // porque pusimos NOW() directamente en el SQL.
 
             int filasAfectadas = ps.executeUpdate();
-            return filasAfectadas > 0; // Devuelve true solo si se insertó al menos una fila.
+            return filasAfectadas > 0;
 
         } catch (SQLException ex) {
             Logger.getLogger(usuariosDAO.class.getName()).log(Level.SEVERE, "Error al registrar usuario", ex);

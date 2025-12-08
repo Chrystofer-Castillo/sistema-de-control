@@ -15,7 +15,24 @@ public class Rusuario extends javax.swing.JFrame {
     public Rusuario() {
         initComponents();
         setBackground(new Color(0,0,0,0));
+        round11.setBackground(javax.swing.UIManager.getColor("Panel.background"));
         this.setTitle("Registrar Usuario");
+        jLabel7.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        Nomlabel.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        Cilabel.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        Conlabel.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        Conlabel2.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        Conlabel3.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        id_tipo.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        id_tipo.setBackground(javax.swing.UIManager.getColor("Label.background"));
+        nombre.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        nombre.setBackground(javax.swing.UIManager.getColor("Label.background"));
+        ci.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        ci.setBackground(javax.swing.UIManager.getColor("Label.background"));
+        password.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        password.setBackground(javax.swing.UIManager.getColor("Label.background"));
+        passconfirm.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
+        passconfirm.setBackground(javax.swing.UIManager.getColor("Label.background"));
     }
 
     @SuppressWarnings("unchecked")
@@ -154,7 +171,7 @@ public class Rusuario extends javax.swing.JFrame {
                 minimizarMouseClicked(evt);
             }
         });
-        round11.add(minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 24, 30));
+        round11.add(minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 24, 30));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -166,7 +183,7 @@ public class Rusuario extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        round11.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 30, 30));
+        round11.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 40, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
